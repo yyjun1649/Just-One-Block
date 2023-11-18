@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 
-public class BattleSystem
+public class BattleSystem : PlaySystem
 {
     [SerializeField] private UI_Battle _uiBattle;
 

@@ -1,4 +1,6 @@
 ﻿public enum Enum_BlockType
 {
-    Wood,
+    None = -1,
+    Wood = 0,
+    Count
 }

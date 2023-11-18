@@ -1,15 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Block : MonoBehaviour
 {
-    public Vector2 Position;
-    public Enum_BlockType EnumBlockType;
+    public Enum_BlockType BlockType;
     public int Level;
-    public UIBlock blockUI;
 
     public void SetPoisiton()
     {
-        transform.localPosition = Position;
+        
     }
 
     public void SetBlockSprite()

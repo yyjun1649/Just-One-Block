@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,14 +15,31 @@ public class InGameManager : SingletonBehaviour<InGameManager>
 
     #region Facade
     
-    public LandSystem LandSystem;
-    public InventorySystem InventorySystem;
-    public EquipmentCraftingSystem EquipmentCraftingSystem;
-    public BattleSystem BattleSystem;
-    public UI_Currency Currency;
+    private LandSystem LandSystem;
+    private InventorySystem InventorySystem;
+    private EquipmentCraftingSystem EquipmentCraftingSystem;
+    private BattleSystem BattleSystem;
+    private CurrencySystem CurrencySystem;
+
+    private PlaySystem[] _systems;
     
     #endregion
-    
+
+    private void Start()
+    {
+        _systems = GetComponents<PlaySystem>();
+
+        foreach (var system in _systems)
+        {
+            system.Initialize();
+        }
+        
+        foreach (var system in _systems)
+        {
+            system.LateInitialize();
+        }
+    }
+
     public void SetState<T>() where T : GameState
     {
         if (currentState != null)
@@ -42,26 +60,34 @@ public class InGameManager : SingletonBehaviour<InGameManager>
 
     public void HandleLandStart()
     {
+        CurrencySystem.SetUI(Enum_Currency.Gold);
         LandSystem.ShowUI();
-        Currency.SetUI(Enum_Currency.LandGold);
+        
+        SetState<GameStateLand>();
     }
 
     public void HandleRewardStart()
     {
+        CurrencySystem.SetUI(Enum_Currency.Gold);
         LandSystem.CalculateLand();
-        Currency.SetUI(Enum_Currency.LandGold);
+        
+        SetState<GameStateReward>();
     }
 
     public void HandleCraftStart()
     {
+        CurrencySystem.SetUI(Enum_Currency.Gold);
         EquipmentCraftingSystem.ShowUI();
         InventorySystem.ShowUI();
-        Currency.SetUI(Enum_Currency.LandGold);
+        
+        SetState<GameStateCraft>();
     }
 
     public void HandleBattleStart()
     {
+        CurrencySystem.SetUI(Enum_Currency.Gold,Enum_Currency.Blood);
         BattleSystem.ShowUI();
-        Currency.SetUI(Enum_Currency.LandGold,Enum_Currency.MonsterKill);
+        
+        SetState<GameStateBattle>();
     }
 }

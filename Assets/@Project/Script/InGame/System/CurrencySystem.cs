@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CurrencySystem : MonoBehaviour
+public class CurrencySystem : PlaySystem
 {
     [SerializeField] private UI_Currency _uiCurrency;
     private List<int> _currency = new List<int>();
 
-    public void Initialize()
+    public override void Initialize()
     {
         for (int i = _currency.Count; i < (int)Enum_Currency.Count; i ++)
         {
@@ -16,7 +16,7 @@ public class CurrencySystem : MonoBehaviour
 
         _currency[(int)Enum_Currency.Gold] = 5;
     }
-
+    
     public void SetUI(params Enum_Currency[] currencies)
     {
         _uiCurrency.SetUI(currencies);

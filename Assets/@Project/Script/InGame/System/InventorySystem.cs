@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class InventorySystem : MonoBehaviour
+public class InventorySystem : PlaySystem
 {
     private List<Item> items = new List<Item>();
     [SerializeField] private UI_Inventory _uiInventory;

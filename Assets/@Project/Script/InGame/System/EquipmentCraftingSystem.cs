@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class EquipmentCraftingSystem : MonoBehaviour
+public class EquipmentCraftingSystem : PlaySystem
 {
     [SerializeField] private UI_Craft _uiCraft;
     

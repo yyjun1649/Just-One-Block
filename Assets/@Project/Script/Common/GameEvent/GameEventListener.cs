@@ -1,7 +1,9 @@
-﻿namespace Project.Script.Common.GameEvent
+﻿public interface GameEventListenerBase
 {
-    public class GameEventListener
-    {
-        
-    }
+
+}
+
+public interface GameEventListener<T> : GameEventListenerBase
+{
+    void OnGameEvent(T gameEventType);
 }
