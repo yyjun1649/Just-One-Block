@@ -15,11 +15,11 @@ public class InGameManager : SingletonBehaviour<InGameManager>
 
     #region Facade
     
-    private LandSystem LandSystem;
-    private InventorySystem InventorySystem;
-    private EquipmentCraftingSystem EquipmentCraftingSystem;
-    private BattleSystem BattleSystem;
-    private CurrencySystem CurrencySystem;
+    public LandSystem LandSystem;
+    public InventorySystem InventorySystem;
+    public EquipmentCraftingSystem EquipmentCraftingSystem;
+    public BattleSystem BattleSystem;
+    public CurrencySystem CurrencySystem;
 
     private PlaySystem[] _systems;
     
@@ -89,5 +89,25 @@ public class InGameManager : SingletonBehaviour<InGameManager>
         BattleSystem.ShowUI();
         
         SetState<GameStateBattle>();
+    }
+
+    public bool IsEnoughCurrency(Enum_Currency currency, int count)
+    {
+        if (CurrencySystem.IsEnough(currency, count))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool ConsumeCurrency(Enum_Currency currency, int count)
+    {
+        if (CurrencySystem.TryConsume(currency, count))
+        {
+            return true;
+        }
+
+        return false;
     }
 }

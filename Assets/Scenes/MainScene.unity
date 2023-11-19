@@ -353,7 +353,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &38705003
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -452,7 +451,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &112870797
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -551,7 +549,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &166711716
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -997,7 +994,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &245625647
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1096,7 +1092,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &271986957
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1195,7 +1190,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &288901999
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1525,7 +1519,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &427998524
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1679,7 +1672,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &442534405
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1778,7 +1770,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &444736796
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1877,7 +1868,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &468159304
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1976,7 +1966,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &476479378
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2403,7 +2392,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &562166530
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2578,7 +2566,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &562690623
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2677,7 +2664,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &563876851
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2776,7 +2762,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &585047678
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2875,7 +2860,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &586273842
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3105,7 +3089,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &596264997
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3204,7 +3187,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &628124269
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3303,7 +3285,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &634924296
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3584,7 +3565,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &663993762
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3683,7 +3663,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &667122247
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3736,6 +3715,50 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &681370008
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 681370010}
+  - component: {fileID: 681370009}
+  m_Layer: 0
+  m_Name: SpecDataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &681370009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681370008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cdf5727584541c78c47b0567656af7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &681370010
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681370008}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.0858793, y: 1.3672342, z: 0.30909422}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &704955786
 GameObject:
   m_ObjectHideFlags: 0
@@ -3782,7 +3805,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &704955789
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3881,7 +3903,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &716832642
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3980,7 +4001,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &721442823
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4079,7 +4099,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &726087440
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4178,7 +4197,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &731401175
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4352,7 +4370,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &752506768
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4539,7 +4556,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &822509192
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4714,7 +4730,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &855351141
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4813,7 +4828,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &882280448
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4912,7 +4926,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &886818686
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5011,7 +5024,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &897492559
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5110,7 +5122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &906001274
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5381,7 +5392,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &923952859
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5480,7 +5490,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &953902963
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5579,7 +5588,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &963336318
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5678,7 +5686,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &968691763
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5777,7 +5784,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &970084387
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6011,7 +6017,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &1011531773
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6245,7 +6250,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &1091740102
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6344,7 +6348,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &1097922229
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6443,7 +6446,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &1100041304
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6694,7 +6696,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &1189223794
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6793,7 +6794,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &1211024371
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6892,7 +6892,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &1216846429
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7126,7 +7125,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &1245249548
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7303,7 +7301,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &1303816897
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7402,7 +7399,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &1307675260
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7501,7 +7497,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &1350378967
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7675,7 +7670,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &1361712614
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7774,7 +7768,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &1362220058
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8027,7 +8020,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &1478979212
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8202,7 +8194,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &1515074459
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8437,6 +8428,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0340ee85929ad3646b549c377ae340d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LandSystem: {fileID: 0}
+  InventorySystem: {fileID: 0}
+  EquipmentCraftingSystem: {fileID: 0}
+  BattleSystem: {fileID: 0}
+  CurrencySystem: {fileID: 0}
 --- !u!1 &1543330956
 GameObject:
   m_ObjectHideFlags: 0
@@ -8483,7 +8479,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &1543330959
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8582,7 +8577,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &1549374151
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8804,7 +8798,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &1602251712
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9274,7 +9267,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &1690389942
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9502,7 +9494,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &1736528575
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9601,7 +9592,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &1789700368
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9776,7 +9766,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &1803250254
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9915,7 +9904,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &1810252175
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10014,7 +10002,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &1856846688
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10113,7 +10100,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &1882575024
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10364,7 +10350,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &1924874927
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10598,7 +10583,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &1937579002
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10697,7 +10681,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &1953155298
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10843,7 +10826,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &1968293836
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11058,7 +11040,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &2000734906
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11272,7 +11253,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &2031387277
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11371,7 +11351,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &2031540089
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11546,7 +11525,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &2088772949
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11645,7 +11623,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &2121309778
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11744,7 +11721,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockType: 0
-  Level: 0
 --- !u!212 &2128053667
 SpriteRenderer:
   m_ObjectHideFlags: 0

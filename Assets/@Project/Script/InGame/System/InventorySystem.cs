@@ -56,3 +56,10 @@ public class Item
         Amount = amount;
     }
 }
+
+public enum Enum_ResourceType
+{
+    Iron,
+    Crystal,
+    Cogwheel,
+}
