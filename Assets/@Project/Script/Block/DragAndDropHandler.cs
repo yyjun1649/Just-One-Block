@@ -1,25 +1,14 @@
-﻿
-using UnityEngine;
-
-public static class DragAndDropHandler
+﻿public static class DragAndDropHandler
 {
-    public static GameObject GrapObject;
+    public static int GrapObject;
 
-    public static void Grap(GameObject gameObject)
+    public static void Grap(int id)
     {
-        GrapObject = gameObject;
+        GrapObject = id;
     }
 
-    public static void Drop(Vector3 pos)
+    public static int Drop()
     {
-        GrapObject.GetComponent<DragAndDrop>().SetPosition(pos);
-        GrapObject = null;
-    }
-
-    public static void Retrun()
-    {
-        GrapObject.GetComponent<DragAndDrop>().ResetPosition();
-        GrapObject = null;
-        
+        return GrapObject;
     }
 }

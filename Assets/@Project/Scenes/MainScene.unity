@@ -2941,6 +2941,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 310bb4b974ed45159cdc6622acc05483, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _uiShopSlot: []
+  _txtLevel: {fileID: 0}
+  _txtExp: {fileID: 0}
 --- !u!224 &588893959
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8428,11 +8431,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0340ee85929ad3646b549c377ae340d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LandSystem: {fileID: 0}
-  InventorySystem: {fileID: 0}
+  LandSystem: {fileID: 1540562752}
+  InventorySystem: {fileID: 1540562753}
   EquipmentCraftingSystem: {fileID: 0}
-  BattleSystem: {fileID: 0}
-  CurrencySystem: {fileID: 0}
+  BattleSystem: {fileID: 1540562755}
+  CurrencySystem: {fileID: 1540562754}
 --- !u!1 &1543330956
 GameObject:
   m_ObjectHideFlags: 0

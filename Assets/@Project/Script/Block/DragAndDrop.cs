@@ -1,35 +1,19 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragAndDrop : MonoBehaviour, IDragHandler,IEndDragHandler
+public class DragAndDrop : MonoBehaviour
 {
     private bool isDragging = false;
     private Vector2 originalPosition;
-    public float gridSize = 1.1f; // 그리드 셀 크기
-    public GameObject transparentBlockPrefab; // 반투명 블록 프리팹
-    private GameObject currentTransparentBlock;
-    
+    private float gridSize = 1.1f; // 그리드 셀 크기
+
     void Update()
     {
         if (isDragging)
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
-            
-            if (currentTransparentBlock == null)
-            {
-                currentTransparentBlock = transparentBlockPrefab;
-                transparentBlockPrefab.SetActive(true);
-            }
-            
-            currentTransparentBlock.transform.position = SnapToGrid(mousePos);
-        }
-        else
-        {
-            if (currentTransparentBlock != null)
-            {
-                transparentBlockPrefab.SetActive(false);
-                currentTransparentBlock = null;
-            }
+
+            transform.position = SnapToGrid(mousePos);
         }
     }
     
@@ -50,14 +34,15 @@ public class DragAndDrop : MonoBehaviour, IDragHandler,IEndDragHandler
         transform.position = vector3;
     }
 
-    public void OnDrag(PointerEventData eventData)
+    public void OnDrag()
     {
-        DragAndDropHandler.Grap(this.gameObject);
         isDragging = true;
+        gameObject.SetActive(true);
     }
 
-    public void OnEndDrag(PointerEventData eventData)
+    public void OnEndDrag()
     {
         isDragging = false;
+        gameObject.SetActive(false);
     }
 }

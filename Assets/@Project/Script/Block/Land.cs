@@ -6,21 +6,26 @@ public class Land : MonoBehaviour
     public Enum_BlockType BlockType;
     private SpecLandData _specLandData;
     private int _slotIndex = -1;
+    private int _id = -1;
 
     public void Initialize(int id,int slotIndex)
     {
         _slotIndex = slotIndex;
-        _specLandData = SpecDataManager.Instance.SpecLandData[id];
+
+        if (id >= 0)
+        {
+            _specLandData = SpecDataManager.Instance.SpecLandData[id];
+        }
     }
 
     public void SellLand()
     {
-        _slotIndex = -1;
+        _id = -1;
     }
 
     public void GetReward()
     {
-        if (_slotIndex < 0)
+        if (_id < 0)
         {
             return;
         }
@@ -30,7 +35,7 @@ public class Land : MonoBehaviour
 
     public void OnClickBlock()
     {
-        if (_slotIndex < 0)
+        if (_id < 0)
         {
             return;
         }

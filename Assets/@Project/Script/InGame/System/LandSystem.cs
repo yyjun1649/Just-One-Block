@@ -1,7 +1,9 @@
 
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
+using Random = UnityEngine.Random;
 
 public class LandSystem : PlaySystem
 {
@@ -27,15 +29,19 @@ public class LandSystem : PlaySystem
         {
             _cacheblock.Add((i, false));
         }
+
+        var count = (int)Math.Sqrt(_blocks.Count);
+        var middleNumber = count / 2;
         
+        _blocks[count * (middleNumber-1) + (middleNumber+1)].Initialize(0,41);
+
         GetSpecShopProb();
-        GetRandomLand();
     }
 
     public void ShowUI()
     {
         GetRandomLand();
-        _uiLand.Initialize();
+        _uiLand.Initialize(_shopSlot);
     }
     
     #region Event
@@ -114,6 +120,8 @@ public class LandSystem : PlaySystem
             var randomland = pickLand[Random.Range(0, pickLand.Count)];
 
             _shopSlot[i] = randomland.fieldID;
+            
+            ListPool<SpecLandData>.Release(pickLand);
         }
     }
 

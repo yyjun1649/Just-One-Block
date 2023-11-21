@@ -13,14 +13,6 @@ public class TilePlacement : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        if (IsValidPlacement())
-        {
-            _gameObject = DragAndDropHandler.GrapObject;
-            DragAndDropHandler.Drop(this.transform.position);
-        }
-        else
-        {
-            DragAndDropHandler.Retrun();
-        }
+        
     }
 }
