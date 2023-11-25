@@ -1,43 +1,80 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Land : MonoBehaviour
+public class Land : MonoBehaviour, IDropHandler
 {
-    public Enum_BlockType BlockType;
+    [SerializeField] private SpriteRenderer _spriteLand;
+    
     private SpecLandData _specLandData;
-    private int _slotIndex = -1;
-    private int _id = -1;
-
-    public void Initialize(int id,int slotIndex)
+    public int LandID = -1;
+    public LandPos LandPos = new LandPos();
+    
+    public void Initialize(int id,int x, int y)
     {
-        _slotIndex = slotIndex;
+        LandPos.SetPos(x,y);
 
         if (id >= 0)
         {
             _specLandData = SpecDataManager.Instance.SpecLandData[id];
         }
+
+        Refresh();
+    }
+
+    private void SetBlock(int id)
+    {
+        LandID = id;
+        _specLandData = SpecDataManager.Instance.SpecLandData[id];
+        
+        Refresh();
+    }
+
+    public void Refresh()
+    {
+        _spriteLand.sprite = ResourceManager.Instance.GetIconSprite(Enum_IconType.Land, LandID);
     }
 
     public void SellLand()
     {
-        _id = -1;
+        LandID = -1;
     }
 
-    public void GetReward()
+    public Reward GetReward()
     {
-        if (_id < 0)
+        if (LandID < 0)
         {
-            return;
+            return null;
         }
         
         var type =_specLandData.itemType;
+
+        return new Reward();
     }
 
     public void OnClickBlock()
     {
-        if (_id < 0)
+        if (LandID < 0)
         {
             return;
+        }
+    }
+
+    public bool IsEnableDrop()
+    {
+        if (LandID < 0)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        if (IsEnableDrop())
+        {
+            SetBlock(DragAndDropHandler.Drop());
         }
     }
 }

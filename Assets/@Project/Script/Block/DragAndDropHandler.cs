@@ -9,6 +9,10 @@
 
     public static int Drop()
     {
-        return GrapObject;
+        var dropid = GrapObject;
+
+        GrapObject = -1;
+        
+        return dropid;
     }
 }

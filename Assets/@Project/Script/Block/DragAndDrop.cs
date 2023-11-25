@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 
 public class DragAndDrop : MonoBehaviour
 {
+    [SerializeField] private SpriteRenderer _spriteRenderer;
     private bool isDragging = false;
     private Vector2 originalPosition;
     private float gridSize = 1.1f; // 그리드 셀 크기
@@ -23,19 +24,10 @@ public class DragAndDrop : MonoBehaviour
         float y = Mathf.Round(pos.y / gridSize) * gridSize;
         return new Vector2(x, y);
     }
-
-    public void ResetPosition()
+    
+    public void OnDrag(int id)
     {
-        transform.position = originalPosition;
-    }
-
-    public void SetPosition(Vector3 vector3)
-    {
-        transform.position = vector3;
-    }
-
-    public void OnDrag()
-    {
+        _spriteRenderer.sprite = ResourceManager.Instance.GetIconSprite(Enum_IconType.Land, id);
         isDragging = true;
         gameObject.SetActive(true);
     }

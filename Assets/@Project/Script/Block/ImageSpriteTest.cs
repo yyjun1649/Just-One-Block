@@ -11,7 +11,7 @@ public class ImageSpriteTest : MonoBehaviour
     public void OnMouseDown()
     {
         DragAndDropHandler.Grap(5);
-        _dragAndDrop.OnDrag();
+        _dragAndDrop.OnDrag(5);
     }
 
     public void OnMouseUp()

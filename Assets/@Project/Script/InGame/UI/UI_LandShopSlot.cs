@@ -6,7 +6,7 @@ public class UI_LandShopSlot : MonoBehaviour
 {
     [SerializeField] private DragAndDrop _dragAndDrop;
 
-    private int _landId;
+    private int _landId = 3;
     
     public void Initialize(int landId)
     {
@@ -16,7 +16,7 @@ public class UI_LandShopSlot : MonoBehaviour
     public void OnMouseDown()
     {
         DragAndDropHandler.Grap(_landId);
-        _dragAndDrop.OnDrag();
+        _dragAndDrop.OnDrag(_landId);
     }
 
     public void OnMouseUp()

@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 public class LandSystem : PlaySystem
 {
-    [SerializeField] private List<Land> _blocks;
+    [SerializeField] private List<LandSet> _blocks;
     [SerializeField] private UI_Land _uiLand;
 
     private List<(int, bool)> _cacheblock = new List<(int, bool)>();
@@ -32,8 +32,11 @@ public class LandSystem : PlaySystem
 
         var count = (int)Math.Sqrt(_blocks.Count);
         var middleNumber = count / 2;
-        
-        _blocks[count * (middleNumber-1) + (middleNumber+1)].Initialize(0,41);
+
+        for (int i = 0; i < _blocks.Count; i++)
+        {
+            
+        }
 
         GetSpecShopProb();
     }
@@ -85,12 +88,7 @@ public class LandSystem : PlaySystem
     {
         foreach (var block in _blocks)
         {
-            if (block == null || block.BlockType == Enum_BlockType.None)
-            {
-                continue;
-            }
-
-            block.GetReward();
+            block.RewardStackPush();
         }
     }
 

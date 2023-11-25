@@ -22,6 +22,11 @@ public class CurrencySystem : PlaySystem
         _uiCurrency.SetUI(currencies);
     }
 
+    public void AddCurrency(Enum_Currency currency, int amount)
+    {
+        _currency[(int)currency].Add(amount);
+    }
+
     public bool IsEnough(Enum_Currency currencyType, int count)
     {
         if (!_currency[(int)currencyType].IsEnough(count))
