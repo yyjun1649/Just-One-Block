@@ -13,7 +13,7 @@ public class InventorySystem : PlaySystem
 
     public void AddItem(int id, int amount)
     {
-        var item = items.Find(x => x.Id == id);
+        var item = items.Find(x => x.ID == id);
 
         if (item == null)
         {
@@ -25,21 +25,22 @@ public class InventorySystem : PlaySystem
         }
         else
         {
-            item.Amount += amount;
+            item.Add(amount);
         }
     }
 
     public void RemoveItem(int id, int amount)
     {
-        var item = items.Find(x => x.Id == id);
+        var item = items.Find(x => x.ID == id);
 
-        if (item.Amount > amount)
+        if (item != null)
         {
-            item.Amount -= amount;
-        }
-        else
-        {
-            items.Remove(item);
+            item.TryConsume(amount);
+
+            if (item.Amount <= 0)
+            {
+                items.Remove(item);
+            }
         }
     }
 }
@@ -47,13 +48,44 @@ public class InventorySystem : PlaySystem
 [System.Serializable]
 public class Item
 {
-    public int Id;
-    public int Amount;
+    private int id;
+    private int _amount;
+    private int _consume;
+    private int _condition;
 
-    public void Initialize(int id,int amount)
+    public int ID => id;
+    public int Amount => _amount;
+
+    public void Initialize(int fieldID,int amount)
     {
-        Id = id;
-        Amount = amount;
+        id = fieldID;
+        _amount = amount;
+        _consume = 0;
+        _condition = _amount;
+    }
+    
+    public void Add(int count)
+    {
+        _condition += count;
+        _amount += count;
+    }
+
+    public bool TryConsume(int amount)
+    {
+        if (_amount < amount)
+        {
+            return false;
+        }
+        
+        _amount -= amount;
+        _consume += amount;
+
+        if (_condition != _consume + _amount)
+        {
+            
+        }
+
+        return true;
     }
 }
 

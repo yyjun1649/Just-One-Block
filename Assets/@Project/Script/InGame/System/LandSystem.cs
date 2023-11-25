@@ -10,8 +10,6 @@ public class LandSystem : PlaySystem
     [SerializeField] private List<LandSet> _blocks;
     [SerializeField] private UI_Land _uiLand;
 
-    private List<(int, bool)> _cacheblock = new List<(int, bool)>();
-
     private List<int> _shopSlot = new List<int>();
 
     private int _level;
@@ -24,20 +22,18 @@ public class LandSystem : PlaySystem
 
     public override void Initialize()
     {
-        _cacheblock.Clear();
-        for (int i = _cacheblock.Count; i < _blocks.Count; i++)
+        var count = _blocks.Count;
+        
+        for (int i = 0; i < count; i++)
         {
-            _cacheblock.Add((i, false));
+            _blocks[i].Initialize(i);
         }
 
-        var count = (int)Math.Sqrt(_blocks.Count);
-        var middleNumber = count / 2;
-
-        for (int i = 0; i < _blocks.Count; i++)
-        {
-            
-        }
-
+        var center = count / 2;
+        
+        _blocks[center].Lands[center].SetBlock(0);
+        _blocks[center].Lands[center].SetLock(true);
+        
         GetSpecShopProb();
     }
 
@@ -90,6 +86,8 @@ public class LandSystem : PlaySystem
         {
             block.RewardStackPush();
         }
+        
+        RewardManager.StackConsume();
     }
 
     private void GetSpecShopProb()
@@ -156,5 +154,15 @@ public class LandSystem : PlaySystem
         }
 
         return true;
+    }
+    
+    public bool IsEnableDrop(int id)
+    {
+        if (id < 0)
+        {
+            return true;
+        }
+
+        return false;
     }
 }

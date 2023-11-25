@@ -6,12 +6,23 @@ public class SpecLandData
     public int level;
     public int price;
     public Enum_ResourceType itemType;
-
+    
+    private Reward _reward;
     public SpecLandData(int id, int le, int pr, Enum_ResourceType type)
     {
         fieldID = id;
         level = le;
         price = pr;
         itemType = type;
+    }
+
+    public Reward GetReward()
+    {
+        if (_reward == null)
+        {
+            _reward = new Reward(Enum_RewardType.Land, fieldID, 1);
+        }
+        
+        return _reward;
     }
 }

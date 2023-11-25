@@ -1,18 +1,26 @@
 ﻿public static class DragAndDropHandler
 {
-    public static int GrapObject;
+    public static int GrapIndex;
+    private static SpecLandData grapSpec;
 
     public static void Grap(int id)
     {
-        GrapObject = id;
+        GrapIndex = id;
+        grapSpec = SpecDataManager.Instance.SpecLandData[id];
+    }
+
+    public static int GetPrice()
+    {
+        return grapSpec.price;
     }
 
     public static int Drop()
     {
-        var dropid = GrapObject;
+        var dropid = GrapIndex;
 
-        GrapObject = -1;
-        
+        GrapIndex = -1;
+        grapSpec = null;
+
         return dropid;
     }
 }

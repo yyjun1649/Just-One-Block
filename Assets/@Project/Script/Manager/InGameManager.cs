@@ -38,6 +38,8 @@ public class InGameManager : SingletonBehaviour<InGameManager>
         {
             system.LateInitialize();
         }
+        
+        HandleLandStart();
     }
 
     public void SetState<T>() where T : GameState

@@ -11,6 +11,8 @@ public class UI_Land : MonoBehaviour
     
     private List<int> _slotList;
 
+    private int _cahcePrice;
+
     public void Initialize(List<int> slotList)
     {
         _slotList = slotList;
@@ -24,6 +26,21 @@ public class UI_Land : MonoBehaviour
         {
             _uiShopSlot[i].Initialize(_slotList[i]);
         }
+    }
+
+    private void SavePrice(int price)
+    {
+        _cahcePrice = price;
+    }
+
+    private bool TryBuyLand()
+    {
+        if (InGameManager.Instance.ConsumeCurrency(Enum_Currency.Gold, _cahcePrice))
+        {
+            return true;
+        }
+
+        return false;
     }
 
     public void OnClickLevelUp()
@@ -40,5 +57,10 @@ public class UI_Land : MonoBehaviour
         {
             
         }
+    }
+
+    public void OnClickNextStep()
+    {
+        InGameManager.Instance.HandleRewardStart();
     }
 }

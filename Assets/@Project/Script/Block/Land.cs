@@ -9,6 +9,8 @@ public class Land : MonoBehaviour, IDropHandler
     private SpecLandData _specLandData;
     public int LandID = -1;
     public LandPos LandPos = new LandPos();
+
+    private bool _lock = false;
     
     public void Initialize(int id,int x, int y)
     {
@@ -22,7 +24,7 @@ public class Land : MonoBehaviour, IDropHandler
         Refresh();
     }
 
-    private void SetBlock(int id)
+    public void SetBlock(int id)
     {
         LandID = id;
         _specLandData = SpecDataManager.Instance.SpecLandData[id];
@@ -30,13 +32,30 @@ public class Land : MonoBehaviour, IDropHandler
         Refresh();
     }
 
+    public void SetLock(bool isLock)
+    {
+        _lock = isLock;
+    }
+
     public void Refresh()
     {
         _spriteLand.sprite = ResourceManager.Instance.GetIconSprite(Enum_IconType.Land, LandID);
     }
 
+    public bool IsEnableSell()
+    {
+        if (_lock)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
     public void SellLand()
     {
+        InGameManager.Instance.CurrencySystem.AddCurrency(Enum_Currency.Gold,_specLandData.price);
+        
         LandID = -1;
     }
 
@@ -47,34 +66,44 @@ public class Land : MonoBehaviour, IDropHandler
             return null;
         }
         
-        var type =_specLandData.itemType;
+        //TODO : UI ON
 
-        return new Reward();
+        return _specLandData.GetReward();
     }
 
+
+
+    #region Event
     public void OnClickBlock()
     {
         if (LandID < 0)
         {
             return;
         }
-    }
-
-    public bool IsEnableDrop()
-    {
-        if (LandID < 0)
-        {
-            return true;
-        }
-
-        return false;
+        
+        //TODO : Sell UI ON
     }
 
     public void OnDrop(PointerEventData eventData)
     {
-        if (IsEnableDrop())
+        var price = DragAndDropHandler.GetPrice();
+        var block = DragAndDropHandler.Drop();
+
+        if (InGameManager.Instance.LandSystem.IsEnableDrop(LandID) 
+            && InGameManager.Instance.ConsumeCurrency(Enum_Currency.Gold,price))
         {
-            SetBlock(DragAndDropHandler.Drop());
+            SetBlock(block);
         }
     }
+
+    public void OnClickSell()
+    {
+        if (!IsEnableSell())
+        {
+            return;
+        }
+        
+        SellLand();
+    }
+    #endregion
 }

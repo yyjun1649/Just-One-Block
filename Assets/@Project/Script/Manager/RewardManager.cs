@@ -39,11 +39,8 @@ public static class RewardManager
     
     public static void TryConsume(List<Reward> rewards)
     {
-        List<Reward> rewardsForUI = new List<Reward>();
-        
         foreach (var reward in rewards)
         {
-            rewardsForUI.Add(reward);
             Consume(reward);
         }
     }
@@ -61,6 +58,9 @@ public static class RewardManager
         
         switch (type)
         {
+            case Enum_RewardType.Land:
+                InGameManager.Instance.InventorySystem.AddItem(index,amount);
+                break;
             default:
                 var currencyType = EnumUtil.ConvertToCurrencyType(reward.RewardType);
 

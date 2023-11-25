@@ -19,6 +19,16 @@ public class LandSet : MonoBehaviour
 
     public void RewardStackPush()
     {
+        foreach (var land in Lands)
+        {
+            var reward = land.GetReward();
 
+            if (reward == null)
+            {
+                continue;
+            }
+            
+            RewardManager.PushReward(reward);
+        }
     }
 }
