@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_Land : MonoBehaviour
+public class UI_Land : UI_Base
 {
     [SerializeField] private List<UI_LandShopSlot> _uiShopSlot;
 
@@ -20,6 +20,9 @@ public class UI_Land : MonoBehaviour
 
         SetSlot();
         Refresh();
+        
+        gameObject.SetActive(true);
+        Open();
     }
 
     private void SetSlot()
@@ -65,10 +68,5 @@ public class UI_Land : MonoBehaviour
         {
             Refresh();
         }
-    }
-
-    public void OnClickNextStep()
-    {
-        InGameManager.Instance.HandleRewardStart();
     }
 }

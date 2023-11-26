@@ -11,6 +11,11 @@ public class InventorySystem : PlaySystem
         _uiInventory.Initialize();
     }
 
+    public void ShowOffUI()
+    {
+        _uiInventory.Close();
+    }
+
     public void AddItem(int id, int amount)
     {
         var item = items.Find(x => x.ID == id);

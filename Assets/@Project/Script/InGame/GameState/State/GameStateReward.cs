@@ -1,8 +1,11 @@
 ﻿
 using System.Collections;
+using UnityEngine;
 
 public class GameStateReward : GameState
 {
+    private WaitForSeconds _waitForSeconds = new WaitForSeconds(2f);
+    
     public override void Enter()
     {
         
@@ -10,7 +13,9 @@ public class GameStateReward : GameState
 
     public override IEnumerator Execute()
     {
-        yield break;
+        yield return _waitForSeconds;
+        
+        InGameManager.Instance.TryNextHandleStart();
     }
 
     public override void Exit()

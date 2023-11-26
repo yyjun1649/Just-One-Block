@@ -5,13 +5,14 @@ using UnityEngine.EventSystems;
 public class Land : MonoBehaviour, IDropHandler
 {
     [SerializeField] private SpriteRenderer _spriteLand;
-    
+    [SerializeField] private UI_LandReward _uiLandReward;
+     
     private SpecLandData _specLandData;
     public int LandID = -1;
     public LandPos LandPos = new LandPos();
 
     private bool _lock = false;
-    
+
     public void Initialize(int id,int x, int y)
     {
         LandPos.SetPos(x,y);
@@ -29,6 +30,8 @@ public class Land : MonoBehaviour, IDropHandler
         LandID = id;
         _specLandData = SpecDataManager.Instance.SpecLandData[id];
         
+        InGameManager.Instance.LandSystem.RefreshLand();
+        
         Refresh();
     }
 
@@ -39,6 +42,7 @@ public class Land : MonoBehaviour, IDropHandler
 
     public void Refresh()
     {
+        _spriteLand.color = LandID < 0 ? ColorExtension.White80 : ColorExtension.White255;
         _spriteLand.sprite = ResourceManager.Instance.GetIconSprite(Enum_IconType.Land, LandID);
     }
 
@@ -65,13 +69,18 @@ public class Land : MonoBehaviour, IDropHandler
         {
             return null;
         }
-        
-        //TODO : UI ON
 
-        return _specLandData.GetReward();
+        var reward = _specLandData.GetReward();
+
+        _uiLandReward.Initialize(reward.Index,reward.Amount);
+
+        return reward;
     }
 
-
+    public void SetActive(bool isOn)
+    {
+        gameObject.SetActive(isOn);
+    }
 
     #region Event
     public void OnClickBlock()

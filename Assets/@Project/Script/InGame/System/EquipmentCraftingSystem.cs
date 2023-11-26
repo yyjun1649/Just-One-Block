@@ -8,6 +8,11 @@ public class EquipmentCraftingSystem : PlaySystem
     {
         _uiCraft.Initialize();
     }
+
+    public void ShowOffUI()
+    {
+        _uiCraft.Close();
+    }
     
     public void CraftEquipment()
     {

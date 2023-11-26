@@ -10,13 +10,15 @@ public class UI_LandShopSlot : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _txtLandPrice;
     [SerializeField] private DragAndDrop _dragAndDrop;
 
-    private int _landId = 3;
+    private int _landId;
     private SpecLandData _specLandData;
     
     public void Initialize(int landId)
     {
         _landId = landId;
         _specLandData = SpecDataManager.Instance.SpecLandData[landId];
+
+        Refresh();
     }
 
     public void Refresh()

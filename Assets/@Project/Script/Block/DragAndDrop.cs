@@ -6,7 +6,7 @@ public class DragAndDrop : MonoBehaviour
     [SerializeField] private SpriteRenderer _spriteRenderer;
     private bool isDragging = false;
     private Vector2 originalPosition;
-    private float gridSize = 1.1f; // 그리드 셀 크기
+    private float gridSize = 1.2f; // 그리드 셀 크기
 
     void Update()
     {

@@ -5,7 +5,8 @@ using UnityEngine.U2D;
 
 public enum Enum_IconType
 {
-    Land
+    Land,
+    Currency,
 }
 
 public class ResourceManager : SingletonBehaviour<ResourceManager>
@@ -13,6 +14,7 @@ public class ResourceManager : SingletonBehaviour<ResourceManager>
     [SerializeField] private SpriteAtlas _atlasSprite;
     
     private Dictionary<int, Sprite> _landSpriteDict = new Dictionary<int, Sprite>();
+    private Dictionary<int, Sprite> _currencySpriteDict = new Dictionary<int, Sprite>();
     
      private Dictionary<int, Sprite> GetDictionary(Enum_IconType type)
     {
@@ -21,6 +23,9 @@ public class ResourceManager : SingletonBehaviour<ResourceManager>
         {
             case Enum_IconType.Land:
                 dictionary = _landSpriteDict;
+                break;
+            case Enum_IconType.Currency:
+                dictionary = _currencySpriteDict;
                 break;
             default:
                 break;
@@ -35,6 +40,9 @@ public class ResourceManager : SingletonBehaviour<ResourceManager>
         {
             case Enum_IconType.Land:
                 return $"Land_{index}";
+            
+            case Enum_IconType.Currency:
+                return $"Currency_{index}";
 
             default:
                 return string.Empty;

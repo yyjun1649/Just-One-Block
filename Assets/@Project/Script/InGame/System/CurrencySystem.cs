@@ -12,6 +12,7 @@ public class CurrencySystem : PlaySystem
         for (int i = _currency.Count; i < (int)Enum_Currency.Count; i ++)
         {
             _currency.Add(new Currency());
+            _currency[i].Initialize((Enum_Currency)i);
         }
 
         _currency[(int)Enum_Currency.Gold].Add(5);
@@ -45,5 +46,15 @@ public class CurrencySystem : PlaySystem
         }
 
         return false;
+    }
+
+    public int GetCurrencyAmount(Enum_Currency currency)
+    {
+        if (currency == Enum_Currency.None)
+        {
+            return 0;
+        }
+        
+        return _currency[(int)currency].Amount;
     }
 }

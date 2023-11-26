@@ -29,6 +29,11 @@ public class LandSystem : PlaySystem
             _blocks[i].Initialize(i);
         }
 
+        for (int i = 0; i < 3; i++)
+        {
+            _shopSlot.Add(-1);
+        }
+
         var center = count / 2;
         
         _blocks[center].Lands[center].SetBlock(0);
@@ -36,12 +41,49 @@ public class LandSystem : PlaySystem
         
         GetSpecShopProb();
     }
+
+    public void RefreshLand()
+    {
+        for (int i = 0; i < _blocks.Count; i++)
+        {
+            var blockSet = _blocks[i];
+            
+            blockSet.SetLandOn();
+        }
+        
+        for (int i = 0; i < _blocks.Count; i++)
+        {
+            var blockSet = _blocks[i];
+            
+            var OnLand = blockSet.GetLandOn();
+
+            for (int j = 0; j < OnLand.Count; j++)
+            {
+                var landOn = OnLand[j];
+                
+                if (i > 0)
+                {
+                    _blocks[i-1].Lands[landOn].SetActive(true);
+                }
+            
+                if (i < _blocks.Count-1)
+                {
+                    _blocks[i+1].Lands[landOn].SetActive(true);
+                }
+            }
+        }
+    }
     public void ShowUI()
     {
         GetRandomLand();
         _uiLand.Initialize(_shopSlot);
     }
-    
+
+    public void ShowOffUI()
+    {
+        _uiLand.Close();
+    }
+
     #region Event
     
     public bool TryExpUp()
@@ -138,7 +180,6 @@ public class LandSystem : PlaySystem
 
         return true;
     }
-    
     public bool IsEnableReload()
     {
         if (!InGameManager.Instance.IsEnoughCurrency(Enum_Currency.Gold,2))
