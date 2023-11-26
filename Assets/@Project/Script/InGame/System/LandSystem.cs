@@ -13,7 +13,7 @@ public class LandSystem : PlaySystem
     private List<int> _shopSlot = new List<int>();
 
     private int _level;
-    private Currency _exp;
+    private Currency _exp = new Currency();
 
     public int Level => _level;
     public Currency Exp => _exp;
@@ -79,6 +79,12 @@ public class LandSystem : PlaySystem
         _uiLand.Initialize(_shopSlot);
     }
 
+    public void BuyAction(int index)
+    {
+        _shopSlot[index] = -1;
+        _uiLand.Initialize(_shopSlot);
+    }
+
     public void ShowOffUI()
     {
         _uiLand.Close();
@@ -93,7 +99,7 @@ public class LandSystem : PlaySystem
             return false;
         }
 
-        if (InGameManager.Instance.TryConsumeCurrency(Enum_Currency.Gold, 4))
+        if (!InGameManager.Instance.TryConsumeCurrency(Enum_Currency.Gold, 4))
         {
             return false;
         }

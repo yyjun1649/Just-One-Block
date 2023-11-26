@@ -1,11 +1,13 @@
 ﻿public static class DragAndDropHandler
 {
     public static int GrapIndex;
+    public static int SlotIndex;
     private static SpecLandData grapSpec;
 
-    public static void Grap(int id)
+    public static void Grap(int id, int slotIndex)
     {
         GrapIndex = id;
+        SlotIndex = slotIndex;
         grapSpec = SpecDataManager.Instance.SpecLandData[id];
     }
 

@@ -101,6 +101,7 @@ public class Land : MonoBehaviour, IDropHandler
         if (InGameManager.Instance.LandSystem.IsEnableDrop(LandID) 
             && InGameManager.Instance.TryConsumeCurrency(Enum_Currency.Gold,price))
         {
+            InGameManager.Instance.LandSystem.BuyAction(DragAndDropHandler.SlotIndex);
             SetBlock(block);
         }
     }

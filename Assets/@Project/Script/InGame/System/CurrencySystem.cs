@@ -15,7 +15,7 @@ public class CurrencySystem : PlaySystem
             _currency[i].Initialize((Enum_Currency)i);
         }
 
-        _currency[(int)Enum_Currency.Gold].Add(5);
+        _currency[(int)Enum_Currency.Gold].Add(999);
     }
     
     public void SetUI(params Enum_Currency[] currencies)

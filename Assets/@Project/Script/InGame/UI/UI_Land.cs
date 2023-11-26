@@ -9,7 +9,9 @@ public class UI_Land : UI_Base
 
     [SerializeField] private TextMeshProUGUI _txtLevel;
     [SerializeField] private TextMeshProUGUI _txtExp;
-    
+
+    [SerializeField] private Image _imgFillExp;
+
     private List<int> _slotList;
 
     private int _cahcePrice;
@@ -21,7 +23,6 @@ public class UI_Land : UI_Base
         SetSlot();
         Refresh();
         
-        gameObject.SetActive(true);
         Open();
     }
 
@@ -29,29 +30,20 @@ public class UI_Land : UI_Base
     {
         for (int i = 0; i < _slotList.Count; i++)
         {
-            _uiShopSlot[i].Initialize(_slotList[i]);
+            _uiShopSlot[i].Initialize(_slotList[i],i);
         }
     }
-
+    
     public void Refresh()
     {
-        _txtLevel.text = $"Lv.{InGameManager.Instance.LandSystem.Level}";
-        _txtExp.text = $"Lv.{InGameManager.Instance.LandSystem.Exp}";
-    }
+        var level = InGameManager.Instance.LandSystem.Level;
+        var exp = InGameManager.Instance.LandSystem.Exp;
+        var totalExp = SpecDataManager.Instance.SpecShopLevelData[level];
+        
+        _txtLevel.text = $"Lv.{level}";
+        _txtExp.text = $"{exp.Amount}/{totalExp.requiredExp}";
 
-    private void SavePrice(int price)
-    {
-        _cahcePrice = price;
-    }
-
-    private bool TryBuyLand()
-    {
-        if (InGameManager.Instance.TryConsumeCurrency(Enum_Currency.Gold, _cahcePrice))
-        {
-            return true;
-        }
-
-        return false;
+        _imgFillExp.fillAmount = (float)exp.Amount / totalExp.requiredExp;
     }
 
     public void OnClickLevelUp()
