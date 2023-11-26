@@ -36,7 +36,6 @@ public class LandSystem : PlaySystem
         
         GetSpecShopProb();
     }
-
     public void ShowUI()
     {
         GetRandomLand();
@@ -52,7 +51,7 @@ public class LandSystem : PlaySystem
             return false;
         }
 
-        if (InGameManager.Instance.ConsumeCurrency(Enum_Currency.Gold, 4))
+        if (InGameManager.Instance.TryConsumeCurrency(Enum_Currency.Gold, 4))
         {
             return false;
         }
@@ -66,10 +65,9 @@ public class LandSystem : PlaySystem
         
         return true;
     }
-
     public bool ReloadShop()
     {
-        if (!IsEnableReload())
+        if (!TryReload())
         {
             return false;
         }
@@ -77,7 +75,6 @@ public class LandSystem : PlaySystem
         ShowUI();
         return true;
     }
-
     #endregion
 
     public void CalculateLand()
@@ -89,12 +86,10 @@ public class LandSystem : PlaySystem
         
         RewardManager.StackConsume();
     }
-
     private void GetSpecShopProb()
     {
         CacheProb = SpecDataManager.Instance.SpecShopProbData[_level];
     }
-
     private void GetRandomLand()
     {
         var probList = CacheProb.prob;
@@ -120,7 +115,6 @@ public class LandSystem : PlaySystem
             ListPool<SpecLandData>.Release(pickLand);
         }
     }
-
     private bool TryLevelUp()
     {
         var specData = SpecDataManager.Instance.SpecShopLevelData[_level];
@@ -135,7 +129,6 @@ public class LandSystem : PlaySystem
         
         return true;
     }
-
     public bool IsEnableLevelUp()
     {
         if (_level > SpecDataManager.Instance.SpecShopProbData.Count - 1)
@@ -155,7 +148,15 @@ public class LandSystem : PlaySystem
 
         return true;
     }
-    
+    public bool TryReload()
+    {
+        if (!InGameManager.Instance.TryConsumeCurrency(Enum_Currency.Gold,2))
+        {
+            return false;
+        }
+
+        return true;
+    }
     public bool IsEnableDrop(int id)
     {
         if (id < 0)

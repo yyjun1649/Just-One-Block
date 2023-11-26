@@ -103,7 +103,7 @@ public class InGameManager : SingletonBehaviour<InGameManager>
         return false;
     }
 
-    public bool ConsumeCurrency(Enum_Currency currency, int count)
+    public bool TryConsumeCurrency(Enum_Currency currency, int count)
     {
         if (CurrencySystem.TryConsume(currency, count))
         {

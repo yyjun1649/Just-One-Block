@@ -55,11 +55,8 @@ SpriteAtlas:
   - {fileID: 21300000, guid: d05d9ac21f605824f90c119f955f5e6c, type: 3}
   - {fileID: 21300000, guid: e8c16cd22ea7dc94784ff21c3225c8eb, type: 3}
   - {fileID: 21300000, guid: caa94433db36af94c98007e5237e26d7, type: 3}
-  - {fileID: 21300000, guid: c7a0a243b846f4c4581182d433ac6903, type: 3}
   - {fileID: 21300000, guid: 50814783fc5dbfc4a91dd8ace93c262a, type: 3}
-  - {fileID: 21300000, guid: 8e2228839c211494a8877c52f33a06ad, type: 3}
   - {fileID: 21300000, guid: c4beab93d752b8c4aadfe9d4414891f3, type: 3}
-  - {fileID: 21300000, guid: d96fe1c329c94e344b3550965b13d3d4, type: 3}
   - {fileID: 21300000, guid: 12da5fc39fd9fb144a4e4beb9fe272ce, type: 3}
   - {fileID: 21300000, guid: 465b76e3d995b9341ac99896f2765842, type: 3}
   - {fileID: 21300000, guid: ab9b14041aab3724495f2ded34113ce7, type: 3}
@@ -67,7 +64,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 27faf8354970596499967d4d3c893456, type: 3}
   - {fileID: 21300000, guid: cce5b8759bea81d45b8e2b62f60c877e, type: 3}
   - {fileID: 21300000, guid: 1c1146b576c1f9d4e86f1f67527d0222, type: 3}
-  - {fileID: 21300000, guid: f246fd867268a0643af35ab9f260212a, type: 3}
   - {fileID: 21300000, guid: 9314dbb63c08b9d469159af19cc9e788, type: 3}
   - {fileID: 21300000, guid: da7e96f6a54bcd14686caaef351dea50, type: 3}
   - {fileID: 21300000, guid: 2c793b67626238742af4888a56ae7e0d, type: 3}
@@ -79,12 +75,17 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 177302b8d98e280409b148487a531c25, type: 3}
   - {fileID: 21300000, guid: 49993fe829ef9264aaf964ed6606dd7d, type: 3}
   - {fileID: 21300000, guid: c8f3a719245d49a429061c837a15864c, type: 3}
-  - {fileID: 21300000, guid: 25131d492ead0e3439ea07b0f1c7b37b, type: 3}
   - {fileID: 21300000, guid: a297a599218ee6e469b4a747849a5d58, type: 3}
-  - {fileID: 21300000, guid: 5d491cd9878e9f346b49c5792f8972b6, type: 3}
   - {fileID: 21300000, guid: ef68a1e97cdd5ca459be6810eee7fabd, type: 3}
   - {fileID: 21300000, guid: cddb04f9e19dc1249835f0525083e23e, type: 3}
   - {fileID: 21300000, guid: 5109c86ab9675364b890a8d486a1e978, type: 3}
+  - {fileID: 21300000, guid: c31462a29f6b1c94c879367cdef23f76, type: 2}
+  - {fileID: 21300000, guid: c7a0a243b846f4c4581182d433ac6903, type: 3}
+  - {fileID: 21300000, guid: 8e2228839c211494a8877c52f33a06ad, type: 3}
+  - {fileID: 21300000, guid: d96fe1c329c94e344b3550965b13d3d4, type: 3}
+  - {fileID: 21300000, guid: f246fd867268a0643af35ab9f260212a, type: 3}
+  - {fileID: 21300000, guid: 25131d492ead0e3439ea07b0f1c7b37b, type: 3}
+  - {fileID: 21300000, guid: 5d491cd9878e9f346b49c5792f8972b6, type: 3}
   - {fileID: 21300000, guid: 0158e4aa63dd2d041abed030fffd6143, type: 3}
   - {fileID: 21300000, guid: f6d4b07bb4362844fa5281b1008ba67b, type: 3}
   - {fileID: 21300000, guid: a097659b8b325f64a99e6c4f12511dcb, type: 3}
@@ -123,11 +124,8 @@ SpriteAtlas:
   - Square (Internal Highlight)
   - Land_6
   - Rounded_Bottom (Internal Invisible)
-  - SquarePip3
   - RoundedPip4
-  - Rounded_Shadow (Internal Highlight)
   - Square_Bottom (Default)
-  - Rounded_Left (Internal Invisible)
   - Rounded_Shadow (Default)
   - Land_0
   - Square_Right (Internal Highlight)
@@ -135,7 +133,6 @@ SpriteAtlas:
   - Square_Left (Default)
   - Square_Right (Internal Invisible)
   - Rounded (Internal Highlight)
-  - RoundedPip3
   - Square_Top (Internal Invisible)
   - Square Bevel 2
   - Square_Top (Internal Highlight)
@@ -147,12 +144,17 @@ SpriteAtlas:
   - Currency_1
   - Square_Shadow (Internal Invisible)
   - Square_Right (Default)
-  - Rounded_Left (Default)
   - Rounded (Internal Invisible)
-  - Rounded_Top (Internal Highlight)
   - Square Bevel 4
   - Rounded_Bottom (Default)
   - Square (Internal Invisible)
+  - Land_-1
+  - SquarePip3
+  - Rounded_Shadow (Internal Highlight)
+  - Rounded_Left (Internal Invisible)
+  - RoundedPip3
+  - Rounded_Left (Default)
+  - Rounded_Top (Internal Highlight)
   - Square_Bottom (Internal Invisible)
   - Square (Default)
   - Land_1

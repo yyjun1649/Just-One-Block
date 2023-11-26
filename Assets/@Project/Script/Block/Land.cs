@@ -90,7 +90,7 @@ public class Land : MonoBehaviour, IDropHandler
         var block = DragAndDropHandler.Drop();
 
         if (InGameManager.Instance.LandSystem.IsEnableDrop(LandID) 
-            && InGameManager.Instance.ConsumeCurrency(Enum_Currency.Gold,price))
+            && InGameManager.Instance.TryConsumeCurrency(Enum_Currency.Gold,price))
         {
             SetBlock(block);
         }

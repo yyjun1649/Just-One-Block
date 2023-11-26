@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,8 +7,8 @@ public class UI_Land : MonoBehaviour
 {
     [SerializeField] private List<UI_LandShopSlot> _uiShopSlot;
 
-    [SerializeField] private Text _txtLevel;
-    [SerializeField] private Text _txtExp;
+    [SerializeField] private TextMeshProUGUI _txtLevel;
+    [SerializeField] private TextMeshProUGUI _txtExp;
     
     private List<int> _slotList;
 
@@ -18,6 +19,7 @@ public class UI_Land : MonoBehaviour
         _slotList = slotList;
 
         SetSlot();
+        Refresh();
     }
 
     private void SetSlot()
@@ -28,6 +30,12 @@ public class UI_Land : MonoBehaviour
         }
     }
 
+    public void Refresh()
+    {
+        _txtLevel.text = $"Lv.{InGameManager.Instance.LandSystem.Level}";
+        _txtExp.text = $"Lv.{InGameManager.Instance.LandSystem.Exp}";
+    }
+
     private void SavePrice(int price)
     {
         _cahcePrice = price;
@@ -35,7 +43,7 @@ public class UI_Land : MonoBehaviour
 
     private bool TryBuyLand()
     {
-        if (InGameManager.Instance.ConsumeCurrency(Enum_Currency.Gold, _cahcePrice))
+        if (InGameManager.Instance.TryConsumeCurrency(Enum_Currency.Gold, _cahcePrice))
         {
             return true;
         }
@@ -47,7 +55,7 @@ public class UI_Land : MonoBehaviour
     {
         if (InGameManager.Instance.LandSystem.TryExpUp())
         {
-            
+            Refresh();
         }
     }
 
@@ -55,7 +63,7 @@ public class UI_Land : MonoBehaviour
     {
         if (InGameManager.Instance.LandSystem.ReloadShop())
         {
-            
+            Refresh();
         }
     }
 
