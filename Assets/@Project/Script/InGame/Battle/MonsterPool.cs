@@ -3,39 +3,39 @@ using UnityEngine;
 
 public class MonsterPool : SingletonBehaviour<MonsterPool>
 {
-    public GameObject objectPrefab;
+    public Monster objectPrefab;
     public int poolSize = 50;
 
-    private Queue<GameObject> objectPool = new Queue<GameObject>();
+    private Queue<Monster> objectPool = new Queue<Monster>();
 
     void Start()
     {
         for (int i = 0; i < poolSize; i++)
         {
-            GameObject obj = Instantiate(objectPrefab,this.transform);
-            obj.SetActive(false);
+            Monster obj = Instantiate(objectPrefab,this.transform);
+            obj.gameObject.SetActive(false);
             objectPool.Enqueue(obj);
         }
     }
 
-    public GameObject GetObject()
+    public Monster GetObject()
     {
         if (objectPool.Count > 0)
         {
-            GameObject obj = objectPool.Dequeue();
-            obj.SetActive(true);
+            Monster obj = objectPool.Dequeue();
+            obj.gameObject.SetActive(true);
             return obj;
         }
         else
         {
-            GameObject obj = Instantiate(objectPrefab);
+            Monster obj = Instantiate(objectPrefab);
             return obj;
         }
     }
 
-    public void ReturnObject(GameObject obj)
+    public void ReturnObject(Monster obj)
     {
-        obj.SetActive(false);
+        obj.gameObject.SetActive(false);
         objectPool.Enqueue(obj);
     }
 }

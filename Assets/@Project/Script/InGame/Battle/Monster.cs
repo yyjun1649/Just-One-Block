@@ -6,14 +6,16 @@ public class Monster : MonoBehaviour
     public float moveSpeed = 3.0f;
     public float attackRange = 1.0f;
     public Transform target;
-    public int maxHealth = 100;
-    private int currentHealth;
+    public float maxHealth = 100;
+    private float currentHealth;
+    public bool isAlive = false;
     
     private Enum_MonsterState currentState = Enum_MonsterState.Idle;
 
     public void Init()
     {
         //TODO Spec 참조
+        isAlive = true;
         currentHealth = 100;
         StartCoroutine(StateMachine());
     }
@@ -85,9 +87,9 @@ public class Monster : MonoBehaviour
         ChangeState(Enum_MonsterState.Moving);
     }
     
-    public void TakeDamage(int damage)
+    public void TakeDamage(Damage damage)
     {
-        currentHealth -= damage;
+        currentHealth -= damage.Value;
 
         if (currentHealth <= 0)
         {
@@ -97,7 +99,8 @@ public class Monster : MonoBehaviour
 
     void Die()
     {
-        MonsterPool.Instance.ReturnObject(gameObject);
+        isAlive = false;
+        MonsterPool.Instance.ReturnObject(this);
         currentHealth = maxHealth; // 체력 초기화
         StopCoroutine(StateMachine());
     }
