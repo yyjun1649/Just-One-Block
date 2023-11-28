@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CurrencySystem : PlaySystem
 {
     [SerializeField] private UI_Currency _uiCurrency;
     private List<Currency> _currency = new List<Currency>();
-
+    
     public override void Initialize()
     {
         for (int i = _currency.Count; i < (int)Enum_Currency.Count; i ++)
@@ -14,7 +15,7 @@ public class CurrencySystem : PlaySystem
             _currency.Add(new Currency());
             _currency[i].Initialize((Enum_Currency)i);
         }
-
+        
         _currency[(int)Enum_Currency.Gold].Add(999);
     }
     

@@ -8,13 +8,12 @@ public class BattleCharacter : SingletonBehaviour<BattleCharacter>
     public readonly CharacterAction ActionEvent = new CharacterAction();
     public List<Monster> Target;
     public float currentHealth;
-    Damage damage = new Damage();
-    
+    public bool IsAlive;
     public void Initialize()
     {
         CalculateStat();
-
         currentHealth = Stat[Enum_StatType.Health];
+        IsAlive = true;
     }
 
     public void CalculateStat()
@@ -22,12 +21,13 @@ public class BattleCharacter : SingletonBehaviour<BattleCharacter>
         
     }
     
-    public void TakeDamage()
+    public void TakeDamage(Damage damage)
     {
         currentHealth -= damage.Value;
 
         if (currentHealth <= 0)
         {
+            IsAlive = false;
             OnDeath();
         }
     }
@@ -39,10 +39,13 @@ public class BattleCharacter : SingletonBehaviour<BattleCharacter>
 
     public void Attack()
     {
-        damage.Clear();
-        
-        var target = GetCloseMonster();
+        OnAttack();
+    }
 
+    public Damage GetDamage()
+    {
+        Damage damage = new Damage();
+        
         damage.Value = Stat[Enum_StatType.Damage];
         
         if (UtilCode.GetChance(Stat[Enum_StatType.CriticalChance]))
@@ -51,13 +54,7 @@ public class BattleCharacter : SingletonBehaviour<BattleCharacter>
             OnCriticalAttack();
         }
 
-        target.TakeDamage(damage);
-        OnAttack();
-
-        if (!target.isAlive)
-        {
-            OnKill();
-        }
+        return damage;
     }
     
     #region Action
