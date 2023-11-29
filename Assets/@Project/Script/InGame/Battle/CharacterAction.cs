@@ -2,9 +2,9 @@
 public class CharacterAction
 {
     public PlayerAction Attack;
+    public PlayerAction OnTargetHit;
     public PlayerAction CriticalAttack;
     public PlayerAction TakeHit;
-    public PlayerAction HoverAttack;
     public PlayerAction Death;
     public PlayerAction Kill;
     

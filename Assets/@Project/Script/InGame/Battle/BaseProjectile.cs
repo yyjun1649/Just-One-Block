@@ -1,45 +1,98 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
-
-public enum Enum_ProjectileType
-{
-    
-}
+using UnityEngine.Pool;
 
 public abstract class BaseProjectile : MonoBehaviour
 {
-    public Enum_ProjectileType Type;
+    private Rigidbody2D _rigidbody;
     public TrailRenderer Renderer;
-    public ParticleSystem Particle;
+    public ParticleSystem ShotParticle;
+    public ParticleSystem HitParticle;
     public GameObject ProjectileModel;
     public Collider2D ProjectileCollider;
-    public bool HideOnCollision = true;
-    public bool StopOnCollision = true;
 
-    public string TargetTag = string.Empty;
-
-    protected float Speed;
-    protected float Duration;
-
+    public float hitVFXDelay;
+    
     protected Transform StartPosition;
     protected Vector3 StartPositionOffset;
-    protected Vector3 Direction;
-    protected float Distance;
-    protected float RotateDelay;
-    protected float RotateDuration;
-    protected Quaternion StartRotation;
-    protected Quaternion EndRotation;
-    protected Monster ShootTarget;
-    protected Action<Monster> OnFinish;
-
+    
+    protected SpecProjectile _spec;
+    protected Vector2 _direction;
+    
     private Coroutine _moveCoroutine;
     private Coroutine _rotateCoroutine;
     private WaitForSeconds _waitForSeconds;
+    private WaitForSeconds _hitWaitForSeconds;
+    
 
-    private bool UseRotate;
+    private Action _onTargetHit;
+    
+    public virtual void Initialize(int fieldID)
+    {
+        _spec = SpecDataManager.Instance.SpecProjectileData[fieldID];
+    }
 
-    public virtual void Shot(Action<Monster> onFinish)
+    public virtual BaseProjectile SetDir(Vector3 direction)
+    {
+        _direction = direction;
+        return this;
+    }
+
+    public virtual BaseProjectile SetPos(Vector3 position)
+    {
+        transform.position = position;
+        return this;
+    }
+    
+    public virtual BaseProjectile SetAction(Action action)
+    {
+        _onTargetHit = action;
+        return this;
+    }
+
+    #region Attack
+
+    protected virtual void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Monster"))
+        {
+            var monster = other.GetComponent<Monster>();
+            
+            OnEnemyCollision(monster);
+        }
+    }
+    
+    protected virtual void OnEnemyCollision(Monster target)
+    {
+        if (target != null && !target.isAlive)
+        {
+            var damage = BattleCharacter.Instance.GetDamage();
+            damage.Value *= (1 + _spec.damage);
+            target.TakeDamage(damage);
+            
+            StartCoroutine(HitEffect());
+        }
+    }
+    
+    private IEnumerator HitEffect()
+    {
+        HitParticle.gameObject.SetActive(true);
+
+        _hitWaitForSeconds ??= new WaitForSeconds(hitVFXDelay);
+        
+        yield return _hitWaitForSeconds;
+
+        if (_spec.ProjectileType != Enum_ProjectileType.Penetration)
+        {
+            Hide();
+        }
+    }
+    
+    #endregion
+
+    
+    public virtual void Shot()
     {
         if (StartPosition != null)
         {
@@ -61,109 +114,18 @@ public abstract class BaseProjectile : MonoBehaviour
             Renderer.Clear();
         }
 
-        SetFinishAction(onFinish);
-        
         StopAllCoroutines();
         _moveCoroutine = StartCoroutine(ProjectileMovement());
-
-        if (UseRotate)
-        {
-            _rotateCoroutine = StartCoroutine(ProjectileRotate());
-            UseRotate = false;
-        }
+        StartCoroutine(HideCoroutine());
     }
 
+    #region Move
+    
     protected abstract IEnumerator ProjectileMovement();
-
-    protected virtual IEnumerator ProjectileRotate()
-    {
-        transform.rotation = StartRotation;
-        
-        yield return new WaitForSeconds(RotateDelay);
-
-        var rotateTimer = 0f;
-        
-        while (rotateTimer < RotateDuration)
-        {
-            rotateTimer += Time.deltaTime;
-
-            transform.rotation = Quaternion.Lerp(StartRotation, EndRotation, rotateTimer / RotateDuration);
-
-            yield return null;
-        }
-    }
-
-    public BaseProjectile SetFinishAction(Action<Monster> onFinish)
-    {
-        OnFinish = onFinish;
-        return this;
-    }
-
-    public BaseProjectile SetStartPosition(Transform position)
-    {
-        StartPosition = position;
-        return this;
-    }
     
-    public BaseProjectile SetSpawnPosition(Vector3 position)
-    {
-        transform.position = position;
-        return this;
-    }
-    
-    public BaseProjectile SetShootTarget(Monster target)
-    {
-        ShootTarget = target;
-        return this;
-    }
-    
-    public BaseProjectile SetDirection(Vector3 direction)
-    {
-        Direction = direction;
-        transform.rotation = Quaternion.identity;;
-        transform.right = Direction;
-        return this;
-    }
+    #endregion
 
-    public BaseProjectile SetSpeed(float speed)
-    {
-        Speed = speed;
-        return this;
-    }
-
-    public BaseProjectile SetDuration(float duration)
-    {
-        Duration = duration;
-        return this;
-    }
-
-    public BaseProjectile SetDistance(float distance)
-    {
-        Distance = distance;
-        return this;
-    }
-
-    public BaseProjectile SetScale(float scale)
-    {
-        transform.localScale = Vector3.one * scale;
-        return this;
-    }
-
-    public BaseProjectile SetScale(Vector3 scale)
-    {
-        transform.localScale = scale;
-        return this;
-    }
-
-    public BaseProjectile SetRotate(float delay, float speed, Quaternion startRotation, Quaternion endRotation)
-    {
-        UseRotate = true;
-        RotateDelay = delay;
-        RotateDuration = speed;
-        StartRotation = startRotation;
-        EndRotation = endRotation;
-        return this;
-    }
+    #region Hide
 
     public virtual void Hide(bool force = false)
     {
@@ -171,10 +133,7 @@ public abstract class BaseProjectile : MonoBehaviour
 
         StartPosition = null;
         StartPositionOffset = Vector3.zero;
-        StartPositionOffset = Vector3.zero;
-        StartPositionOffset = Vector3.zero;
-        ShootTarget = null;
-        OnFinish = null;
+        ProjectilePool.Instance.ReturnProjectile(this);
     }
 
     protected IEnumerator HideCoroutine()
@@ -186,50 +145,11 @@ public abstract class BaseProjectile : MonoBehaviour
         
         Hide();
     }
-
+    
     protected virtual float GetHideDelay()
     {
-
         return 0;
     }
 
-    protected virtual void OnTriggerEnter2D(Collider2D col)
-    {
-        if (!col.CompareTag(TargetTag))
-        {
-            return;
-        }
-
-        var target = col.GetComponent<Monster>();
-        OnEnemyCollision(target);
-    }
-
-    protected virtual void OnEnemyCollision(Monster target)
-    {
-        if (target != null && target.isAlive)
-        {
-            OnFinish?.Invoke(target);
-
-            if (StopOnCollision)
-            {
-                ProjectileCollider.enabled = false;
-                ProjectileModel.SetActive(false);
-                
-                if (_moveCoroutine != null)
-                {
-                    StopCoroutine(_moveCoroutine);
-                }
-            }
-            
-            if (HideOnCollision)
-            {
-                Hide();
-            }
-        }
-    }
-
-    public void MoveStartPosition(Vector3 offset)
-    {
-        StartPositionOffset = offset;
-    }
+    #endregion
 }

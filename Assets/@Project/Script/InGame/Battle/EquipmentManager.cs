@@ -13,6 +13,44 @@ public class EquipmentManager<T> : SingletonBehaviour<T> where T : MonoBehaviour
     private bool _isOwnerInited;
     private bool _isHandlerInited;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        
+        Initialize(BattleCharacter.Instance);
+    }
+
+    protected virtual void Update()
+    {
+        if (!_isOwnerInited || InGameManager.Instance._currentState != Enum_State.Battle)
+        {
+            return;
+        }
+
+        if (!_player.IsAlive)
+        {
+            return;
+        }
+        
+        var deltaTime = Time.deltaTime;
+        
+        HandlerAction((handler) => { handler.OnUpdate(deltaTime); });
+
+        OnUpdate();
+    }
+    
+    protected virtual void OnUpdate() { }
+    
+    public void RefreshSkill()
+    {
+        InitEquipment();
+    }
+
+    private void InitEquipment()
+    {
+        
+    }
+
     public void Initialize(BattleCharacter player)
     {
         _player = player;
@@ -56,47 +94,20 @@ public class EquipmentManager<T> : SingletonBehaviour<T> where T : MonoBehaviour
         actionEvent.CriticalAttack.AddListener(OnCriticalAttack);
         actionEvent.Death.AddListener(OnDeath);
         actionEvent.TakeHit.AddListener(OnHit);
-        actionEvent.HoverAttack.AddListener(OnHoverAttack);
         actionEvent.Kill.AddListener(OnKill);
+        actionEvent.OnTargetHit.AddListener(OnTargetHit);
     }
 
     private void InitSkill()
     {
-        HandlerAction((handler) => { handler.InitEquipment(_player); });
+        HandlerAction((handler) => { handler.InitEquipment(); });
     }
-    
-    protected virtual void Update()
-    {
-        if (!_isOwnerInited || InGameManager.Instance._currentState != Enum_State.Battle)
-        {
-            return;
-        }
-
-        if (_player.IsAlive)
-        {
-            return;
-        }
-        
-        var deltaTime = Time.deltaTime;
-        
-        HandlerAction((handler) => { handler.OnUpdate(deltaTime); });
-
-        OnUpdate();
-    }
-
-    protected virtual void OnUpdate() { }
-    
     
     public void HideSkills()
     {
         HandlerAction((handler) => { handler.Hide(); });
     }
     
-    public void ResetSkill()
-    {
-        HandlerAction((handler) => { handler.ResetCoolDown(); });
-    }
-
     public void ForceUse(int skillIndex)
     {
         _weaponHandler.ForceUse(skillIndex);
@@ -104,7 +115,7 @@ public class EquipmentManager<T> : SingletonBehaviour<T> where T : MonoBehaviour
     
     public void InitWeapon(int skillIndex)
     {
-        _weaponHandler.EquipEquipment(skillIndex);
+        _weaponHandler.EquipWeapon(skillIndex);
     }
     
     private void OnDeath()
@@ -121,12 +132,7 @@ public class EquipmentManager<T> : SingletonBehaviour<T> where T : MonoBehaviour
     {
         HandlerAction((handler) => { handler.OnKill(); });
     }
-
-    private void OnHoverAttack()
-    {
-        HandlerAction((handler) => { handler.OnHoverAttack(); });
-    }
-
+    
     private void OnCriticalAttack()
     {
         HandlerAction((handler) => { handler.OnCriticalAttack(); });
@@ -135,6 +141,11 @@ public class EquipmentManager<T> : SingletonBehaviour<T> where T : MonoBehaviour
     private void OnAttack()
     {
         HandlerAction((handler) => { handler.OnAttack(); });
+    }
+    
+    private void OnTargetHit()
+    {
+        HandlerAction((handler) => { handler.OnTargetHit(); });
     }
     
     

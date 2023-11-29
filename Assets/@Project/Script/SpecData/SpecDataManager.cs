@@ -7,6 +7,8 @@ public class SpecDataManager : SingletonBehaviour<SpecDataManager>
     public List<SpecItemCraft> SpecItemCraftData = new List<SpecItemCraft>();
     public List<SpecShopProb> SpecShopProbData = new List<SpecShopProb>();
     public List<SpecLevel> SpecShopLevelData = new List<SpecLevel>();
+    public List<SpecWeapon> SpecWeaponData = new List<SpecWeapon>();
+    public List<SpecProjectile> SpecProjectileData = new List<SpecProjectile>();
     
     private void Start()
     {

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,9 +33,37 @@ public class BattleCharacter : SingletonBehaviour<BattleCharacter>
         }
     }
 
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Monster"))
+        {
+            var monster = other.GetComponent<Monster>();
+            Target.Add(monster);
+        }
+    }
+
     public Monster GetCloseMonster()
     {
-        return Target[0];
+        if (Target.Count == 0)
+        {
+            return null;
+        }
+        
+        var minDisatnace = float.MaxValue;
+        Monster closeTarget = Target[0];
+        var pos = transform.position;
+        
+        foreach (var target in Target)
+        {
+            var distance = Vector2.Distance(pos, target.transform.position);
+            if (minDisatnace > distance)
+            {
+                minDisatnace = distance;
+                closeTarget = target;
+            }
+        }
+
+        return closeTarget;
     }
 
     public void Attack()
