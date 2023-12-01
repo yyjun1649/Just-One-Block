@@ -4,6 +4,7 @@ using System.Linq;
 public class WeaponHandler : EquipmentHandler
 {
     private List<Weapon> _weaponList = new List<Weapon>();
+    
     private List<ActiveWeapon> _activeWeaponList = new List<ActiveWeapon>();
     private List<PassiveWeapon> _passiveWeaponList = new List<PassiveWeapon>();
     private List<Weapon> _equippedWeaponList = new List<Weapon>();
@@ -36,7 +37,7 @@ public class WeaponHandler : EquipmentHandler
             _weaponList[i].gameObject.SetActive(false);
         }
     }
-
+    
     public override void Hide()
     {
 
@@ -44,7 +45,7 @@ public class WeaponHandler : EquipmentHandler
 
     public override void OnUpdate(float dt)
     {
-
+        RefreshCoolDown(dt);
     }
     
     protected override void RefreshCoolDown(float dt)
@@ -95,7 +96,7 @@ public class WeaponHandler : EquipmentHandler
 
     public virtual void ForceUse(int skillIndex)
     {
-        _weaponList[skillIndex].ForceUseSkill();
+        _weaponList[skillIndex].ForceAttack();
     }
 
     public void EquipWeapon(int weaponIndex)
@@ -123,7 +124,7 @@ public class WeaponHandler : EquipmentHandler
         {
             var weapon = _equippedWeaponList[i];
                 
-            if (weapon != null && weapon.TryUseSkill())
+            if (weapon != null && weapon.TryAttack())
             {
                 break;
             }

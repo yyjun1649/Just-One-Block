@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EquipmentManager<T> : SingletonBehaviour<T> where T : MonoBehaviour 
+public class EquipmentManager : SingletonBehaviour<EquipmentManager>, GameEventListener<RefreshEvent>
 {
     [SerializeField] protected WeaponHandler _weaponHandler;
 
@@ -18,6 +18,10 @@ public class EquipmentManager<T> : SingletonBehaviour<T> where T : MonoBehaviour
         base.Awake();
         
         Initialize(BattleCharacter.Instance);
+
+        RefreshSkill();
+        
+        this.AddGameEventListening<RefreshEvent>();
     }
 
     protected virtual void Update()
@@ -43,14 +47,9 @@ public class EquipmentManager<T> : SingletonBehaviour<T> where T : MonoBehaviour
     
     public void RefreshSkill()
     {
-        InitEquipment();
-    }
-
-    private void InitEquipment()
-    {
         
     }
-
+    
     public void Initialize(BattleCharacter player)
     {
         _player = player;
@@ -112,12 +111,20 @@ public class EquipmentManager<T> : SingletonBehaviour<T> where T : MonoBehaviour
     {
         _weaponHandler.ForceUse(skillIndex);
     }
+
+    // private void InitWeapon()
+    // {
+    //     var activeIndex = PlayerDataManager.Instance.GetEquippedSkill(false);
+    //     var passiveIndex = PlayerDataManager.Instance.GetEquippedSkill(true);
+    //
+    //     InitBerserkSkill(activeIndex, passiveIndex);
+    // }
     
     public void InitWeapon(int skillIndex)
     {
         _weaponHandler.EquipWeapon(skillIndex);
     }
-    
+
     private void OnDeath()
     {
         HandlerAction((handler) => { handler.OnDeath(); });
@@ -147,6 +154,12 @@ public class EquipmentManager<T> : SingletonBehaviour<T> where T : MonoBehaviour
     {
         HandlerAction((handler) => { handler.OnTargetHit(); });
     }
-    
-    
+
+    public void OnGameEvent(RefreshEvent gameEventType)
+    {
+        if(gameEventType.Type == Enum_RefreshEventType.Weapon)
+        {
+            RefreshSkill();
+        }
+    }
 }

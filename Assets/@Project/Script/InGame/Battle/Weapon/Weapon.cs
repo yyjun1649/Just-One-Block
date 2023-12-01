@@ -1,7 +1,4 @@
-﻿
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
@@ -16,11 +13,6 @@ public class Weapon : MonoBehaviour
     {
         _player = BattleCharacter.Instance;
         _specData = weapon;
-    }
-    
-    public virtual void OnUpdate(float dt)
-    {
-        
     }
     
     public bool IsSkillEnable()
