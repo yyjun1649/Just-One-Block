@@ -120,9 +120,11 @@ public class EquipmentManager : SingletonBehaviour<EquipmentManager>, GameEventL
     //     InitBerserkSkill(activeIndex, passiveIndex);
     // }
     
-    public void InitWeapon(int skillIndex)
+    public void EquipWeapon(int weaponIndex)
     {
-        _weaponHandler.EquipWeapon(skillIndex);
+        var weapon = SpecDataManager.Instance.SpecWeaponData[weaponIndex];
+        
+        _weaponHandler.EquipWeapon(weapon);
     }
 
     private void OnDeath()

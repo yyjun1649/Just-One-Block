@@ -20,6 +20,8 @@ public class UI_CraftInfo : MonoBehaviour
     
     public void Init(SpecItemCraft specCraft)
     {
+        _specCraft = specCraft;
+        
         if (specCraft == null)
         {
             _goDisable.SetActive(true);

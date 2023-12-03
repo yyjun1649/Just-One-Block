@@ -1,8 +1,4 @@
-
 using System;
-using System.Collections.Generic;
-using DanielLochner.Assets.SimpleScrollSnap;
-using UnityEngine;
 
 public class UI_CraftScroller : UI_EnhancedScroller<UI_CraftSlot,SpecItemCraft>
 {

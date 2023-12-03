@@ -99,18 +99,16 @@ public class WeaponHandler : EquipmentHandler
         _weaponList[skillIndex].ForceAttack();
     }
 
-    public void EquipWeapon(int weaponIndex)
+    public void EquipWeapon(SpecWeapon weapon)
     {
-        if (weaponIndex < 0)
+        if (weapon == null)
         {
             return;
         }
-
-        var spec = SpecDataManager.Instance.SpecWeaponData[weaponIndex];
         
-        _weaponList[weaponIndex].Initialize(spec);
+        _weaponList[weapon.fieldID].Initialize(weapon);
         
-        _equippedWeaponList.Add(_weaponList[weaponIndex]);
+        _equippedWeaponList.Add(_weaponList[weapon.fieldID]);
     }
     
     public void TryUseAutoSkill(bool isEnemy = false)

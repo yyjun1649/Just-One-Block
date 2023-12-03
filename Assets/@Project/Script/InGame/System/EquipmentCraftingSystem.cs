@@ -76,6 +76,9 @@ public class EquipmentCraftingSystem : PlaySystem
             
             item.TryConsume(resourceCount[i]);
         }
+        
+        EquipmentManager.Instance.EquipWeapon(specCraft.itemId);
+        
         return true;
     }
 }
