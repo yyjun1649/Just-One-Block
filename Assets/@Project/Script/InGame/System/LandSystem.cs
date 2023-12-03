@@ -39,6 +39,8 @@ public class LandSystem : PlaySystem
         _blocks[center].Lands[center].SetBlock(0);
         _blocks[center].Lands[center].SetLock(true);
         
+        ShowOffUI();
+        
         GetSpecShopProb();
     }
 

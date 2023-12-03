@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
@@ -7,6 +6,9 @@ public enum Enum_IconType
 {
     Land,
     Currency,
+    Item,
+    Weapon,
+    Projectile,
 }
 
 public class ResourceManager : SingletonBehaviour<ResourceManager>
@@ -15,6 +17,8 @@ public class ResourceManager : SingletonBehaviour<ResourceManager>
     
     private Dictionary<int, Sprite> _landSpriteDict = new Dictionary<int, Sprite>();
     private Dictionary<int, Sprite> _currencySpriteDict = new Dictionary<int, Sprite>();
+    private Dictionary<int, Sprite> _itemSpriteDict = new Dictionary<int, Sprite>();
+    private Dictionary<int, Sprite> _weaponSpriteDict = new Dictionary<int, Sprite>();
     
      private Dictionary<int, Sprite> GetDictionary(Enum_IconType type)
     {
@@ -27,6 +31,12 @@ public class ResourceManager : SingletonBehaviour<ResourceManager>
             case Enum_IconType.Currency:
                 dictionary = _currencySpriteDict;
                 break;
+            case Enum_IconType.Item:
+                dictionary = _itemSpriteDict;
+                break;
+            case Enum_IconType.Weapon:
+                dictionary = _weaponSpriteDict;
+                break;
             default:
                 break;
         }
@@ -35,19 +45,25 @@ public class ResourceManager : SingletonBehaviour<ResourceManager>
     }
      
      private string GetIconKey(Enum_IconType type, int index)
-    {
-        switch (type)
-        {
-            case Enum_IconType.Land:
-                return $"Land_{index}";
+     {
+         switch (type)
+         {
+             case Enum_IconType.Land:
+                 return $"Land_{index}";
             
-            case Enum_IconType.Currency:
-                return $"Currency_{index}";
+             case Enum_IconType.Currency:
+                 return $"Currency_{index}";
+            
+             case Enum_IconType.Item:
+                 return $"icon_item_{index}";
+             
+             case Enum_IconType.Weapon:
+                 return $"icon_weapon_{index}";
 
-            default:
-                return string.Empty;
-        }
-    }
+             default:
+                 return string.Empty;
+         }
+     }
     
      public Sprite GetIconSprite(Enum_IconType type, int index)
      {

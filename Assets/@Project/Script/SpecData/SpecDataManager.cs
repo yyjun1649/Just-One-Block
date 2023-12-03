@@ -17,6 +17,7 @@ public class SpecDataManager : SingletonBehaviour<SpecDataManager>
         ParseSpecShopProb();
         ParseSpecItem();
         ParseSpecLevel();
+        ParseSpecWeapon();
     }
 
     #region Parse
@@ -94,6 +95,23 @@ public class SpecDataManager : SingletonBehaviour<SpecDataManager>
                 );
                 
                 SpecItemCraftData.Add(data);
+            });
+    }
+    
+    private void ParseSpecWeapon()
+    {
+        BGSpecWeapon.ForEachEntity(
+            x =>
+            {
+                SpecWeapon data = new SpecWeapon(
+                    x.fieldID,
+                    x.grade,
+                    x.coolDown,
+                    x.damage,
+                    x.projectileID
+                );
+                
+                SpecWeaponData.Add(data);
             });
     }
 
