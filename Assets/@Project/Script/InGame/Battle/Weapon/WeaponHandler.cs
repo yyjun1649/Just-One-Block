@@ -9,7 +9,7 @@ public class WeaponHandler : EquipmentHandler
     private List<PassiveWeapon> _passiveWeaponList = new List<PassiveWeapon>();
     private List<Weapon> _equippedWeaponList = new List<Weapon>();
     
-    private void Awake()
+    private void Start()
     {
         Initialize();
     }

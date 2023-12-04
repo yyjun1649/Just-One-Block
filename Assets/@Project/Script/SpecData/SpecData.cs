@@ -345,15 +345,25 @@ public partial class BGSpecWeapon : BGEntity
 		get => _coolDown[Index];
 		set => _coolDown[Index] = value;
 	}
-	public float damage
-	{
-		get => _damage[Index];
-		set => _damage[Index] = value;
-	}
 	public System.Int32 projectileID
 	{
 		get => _projectileID[Index];
 		set => _projectileID[Index] = value;
+	}
+	public System.Single value
+	{
+		get => _value[Index];
+		set => _value[Index] = value;
+	}
+	public System.Single subValue
+	{
+		get => _subValue[Index];
+		set => _subValue[Index] = value;
+	}
+	public Enum_EffectType effectType
+	{
+		get => (Enum_EffectType) _effectType.GetStoredValue(Index);
+		set => _effectType.SetStoredValue(Index, (System.Int32) value);
 	}
 	private static BansheeGz.BGDatabase.BGFieldEntityName _ufle12jhs77_name;
 	public static BansheeGz.BGDatabase.BGFieldEntityName _name => _ufle12jhs77_name ?? (_ufle12jhs77_name = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldEntityName>(MetaDefault, new BGId(5659106634718440428UL, 10906436684785901489UL), () => _ufle12jhs77_name = null));
@@ -363,10 +373,14 @@ public partial class BGSpecWeapon : BGEntity
 	public static BansheeGz.BGDatabase.BGFieldInt _grade => _ufle12jhs77_grade ?? (_ufle12jhs77_grade = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(5444483379748846421UL, 13274162939719790479UL), () => _ufle12jhs77_grade = null));
 	private static BansheeGz.BGDatabase.BGFieldFloat _ufle12jhs77_coolDown;
 	public static BansheeGz.BGDatabase.BGFieldFloat _coolDown => _ufle12jhs77_coolDown ?? (_ufle12jhs77_coolDown = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldFloat>(MetaDefault, new BGId(4898924853419677486UL, 17996283955200349082UL), () => _ufle12jhs77_coolDown = null));
-	private static BansheeGz.BGDatabase.BGFieldFloat _ufle12jhs77_damage;
-	public static BansheeGz.BGDatabase.BGFieldFloat _damage => _ufle12jhs77_damage ?? (_ufle12jhs77_damage = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldFloat>(MetaDefault, new BGId(5341952226922141128UL, 10749782415309673361UL), () => _ufle12jhs77_damage = null));
 	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_projectileID;
 	public static BansheeGz.BGDatabase.BGFieldInt _projectileID => _ufle12jhs77_projectileID ?? (_ufle12jhs77_projectileID = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(4681212342128616853UL, 13978788006685345457UL), () => _ufle12jhs77_projectileID = null));
+	private static BansheeGz.BGDatabase.BGFieldFloat _ufle12jhs77_value;
+	public static BansheeGz.BGDatabase.BGFieldFloat _value => _ufle12jhs77_value ?? (_ufle12jhs77_value = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldFloat>(MetaDefault, new BGId(5743321051726736949UL, 1419126399053800365UL), () => _ufle12jhs77_value = null));
+	private static BansheeGz.BGDatabase.BGFieldFloat _ufle12jhs77_subValue;
+	public static BansheeGz.BGDatabase.BGFieldFloat _subValue => _ufle12jhs77_subValue ?? (_ufle12jhs77_subValue = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldFloat>(MetaDefault, new BGId(5041274046455081006UL, 5215060507695826612UL), () => _ufle12jhs77_subValue = null));
+	private static BansheeGz.BGDatabase.BGFieldEnum _ufle12jhs77_effectType;
+	public static BansheeGz.BGDatabase.BGFieldEnum _effectType => _ufle12jhs77_effectType ?? (_ufle12jhs77_effectType = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldEnum>(MetaDefault, new BGId(5603759476874357539UL, 4777720587180265857UL), () => _ufle12jhs77_effectType = null));
 	private static readonly BGSpecLand.Factory _factory0_PFS = new BGSpecLand.Factory();
 	private static readonly BGSpecItem.Factory _factory1_PFS = new BGSpecItem.Factory();
 	private static readonly BGSpecItemCraft.Factory _factory2_PFS = new BGSpecItemCraft.Factory();

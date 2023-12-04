@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using EnhancedUI.EnhancedScroller;
+using TMPro;
 using UnityEngine;
 
 public class UI_CraftInfo : MonoBehaviour
@@ -17,7 +18,11 @@ public class UI_CraftInfo : MonoBehaviour
 
     [SerializeField] private GameObject _goExist;
     [SerializeField] private GameObject _goDisable;
-    
+
+    [SerializeField] private TextMeshProUGUI _txtDamage;
+    [SerializeField] private TextMeshProUGUI _txtAttackSpeed;
+    [SerializeField] private TextMeshProUGUI _txtEffect;
+
     public void Init(SpecItemCraft specCraft)
     {
         _specCraft = specCraft;
@@ -60,9 +65,13 @@ public class UI_CraftInfo : MonoBehaviour
         }
 
         var specCraftResult = SpecDataManager.Instance.SpecItemCraftData[specCraft.itemId];
-        
+        var specWeapon = SpecDataManager.Instance.SpecWeaponData[specCraft.itemId];
         _resultSlot.Init(specCraftResult,null);
 
+        _txtDamage.text = $"Damage : {specWeapon.value}";
+        _txtAttackSpeed.text = $"CoolDown : {specWeapon.coolDown}";
+        _txtEffect.text = $"EffectType : {specWeapon.effectType} {specWeapon.subValue}%";
+        
         var isEnableCraft = InGameManager.Instance.EquipmentCraftingSystem.IsEnableCraft(specCraft);
         
         _goX.SetActive(!isEnableCraft);

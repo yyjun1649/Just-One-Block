@@ -18,6 +18,13 @@ public class SpecLandData
 
     public Reward GetReward()
     {
-        return new Reward(Enum_RewardType.Land, fieldID, 1);;
+        if (_reward == null)
+        {
+            _reward =  new Reward(Enum_RewardType.Land, fieldID, 1);
+        }
+
+        _reward.Amount = 1;
+
+        return _reward;
     }
 }

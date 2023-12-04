@@ -26,6 +26,8 @@ public class InGameManager : SingletonBehaviour<InGameManager>
     
     #endregion
 
+    public int Level = 0;
+
     [SerializeField] private GameObject _nextButton;
 
     private void Start()

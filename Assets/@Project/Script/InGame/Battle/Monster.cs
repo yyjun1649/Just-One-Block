@@ -3,20 +3,19 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
-    public float moveSpeed = 3.0f;
-    public float attackRange = 1.0f;
+    public SpecMonster Spec;
     public Transform target;
-    public float maxHealth = 100;
     private float currentHealth;
     public bool isAlive = false;
     
     private Enum_MonsterState currentState = Enum_MonsterState.Idle;
 
-    public void Init()
+    public void Init(int fieldID)
     {
-        //TODO Spec 참조
+        Spec = SpecDataManager.Instance.SpecMonsterData[fieldID];
+
         isAlive = true;
-        currentHealth = 100;
+        currentHealth = Spec.health;
         StartCoroutine(StateMachine());
     }
     
@@ -53,24 +52,16 @@ public class Monster : MonoBehaviour
 
     void MoveTowardsTarget()
     {
-        if (Vector2.Distance(transform.position, target.position) > attackRange)
+        if (Vector2.Distance(transform.position, target.position) > Spec.attackRange)
         {
-            transform.position = Vector2.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, target.position, Spec.speed * Time.deltaTime);
         }
         else
         {
             ChangeState(Enum_MonsterState.Attacking);
         }
     }
-
-    void CheckAttackRange()
-    {
-        if (Vector2.Distance(transform.position, target.position) <= attackRange)
-        {
-            ChangeState(Enum_MonsterState.Attacking);
-        }
-    }
-
+    
     IEnumerator Attack()
     {
         yield return null;
@@ -101,7 +92,7 @@ public class Monster : MonoBehaviour
     {
         isAlive = false;
         MonsterPool.Instance.ReturnObject(this);
-        currentHealth = maxHealth; // 체력 초기화
+        currentHealth = 0; // 체력 초기화
         StopCoroutine(StateMachine());
     }
 }

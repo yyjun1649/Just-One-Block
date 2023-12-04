@@ -9,8 +9,9 @@ public class SpecDataManager : SingletonBehaviour<SpecDataManager>
     public List<SpecLevel> SpecShopLevelData = new List<SpecLevel>();
     public List<SpecWeapon> SpecWeaponData = new List<SpecWeapon>();
     public List<SpecProjectile> SpecProjectileData = new List<SpecProjectile>();
+    public List<SpecMonster> SpecMonsterData = new List<SpecMonster>();
     
-    private void Start()
+    private void Awake()
     {
         ParseSpecLand();
         ParseSpecItemCraft();
@@ -18,6 +19,7 @@ public class SpecDataManager : SingletonBehaviour<SpecDataManager>
         ParseSpecItem();
         ParseSpecLevel();
         ParseSpecWeapon();
+        ParseSpecArmor();
     }
 
     #region Parse
@@ -107,12 +109,19 @@ public class SpecDataManager : SingletonBehaviour<SpecDataManager>
                     x.fieldID,
                     x.grade,
                     x.coolDown,
-                    x.damage,
-                    x.projectileID
+                    x.value,
+                    x.subValue,
+                    x.projectileID,
+                    x.effectType
                 );
                 
                 SpecWeaponData.Add(data);
             });
+    }
+    
+    private void ParseSpecArmor()
+    {
+
     }
 
 

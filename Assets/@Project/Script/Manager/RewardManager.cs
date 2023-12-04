@@ -6,8 +6,6 @@ public static class RewardManager
     
     public static void PushReward(Reward reward)
     {
-        _rewardSave.Add(reward);
-        
         var targetReward = _rewardSave.Find(x => x.RewardType == reward.RewardType && x.Index == reward.Index);
 
         if (targetReward == null)
