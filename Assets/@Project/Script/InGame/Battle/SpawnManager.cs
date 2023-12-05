@@ -10,9 +10,12 @@ public class SpawnManager : SingletonBehaviour<SpawnManager>
     private Vector2 randomPoint = new Vector2();
 
     private WaitForSeconds wfs = new WaitForSeconds(1f);
-
+    public bool IsSpawning = true;
+    
+    
     public void StartWave(int count)
     {
+        IsSpawning = true;
         StartCoroutine(CoSpawn(count));
     }
 
@@ -24,6 +27,8 @@ public class SpawnManager : SingletonBehaviour<SpawnManager>
             count--;
             yield return wfs;
         }
+
+        IsSpawning = false;
     }
     
     void GetRandomPointOnCircle(ref Vector2 point, Vector2 center, float radius)

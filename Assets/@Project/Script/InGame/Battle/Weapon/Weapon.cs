@@ -4,6 +4,7 @@ public class Weapon : MonoBehaviour
 {
     protected BattleCharacter _player;
     protected SpecWeapon _specData;
+    protected int count = 0;
     
     protected float _skillCooldownTimer;
     protected float _skillCooldown;
@@ -13,6 +14,11 @@ public class Weapon : MonoBehaviour
     {
         _player = BattleCharacter.Instance;
         _specData = weapon;
+    }
+
+    public void EquipCheck()
+    {
+        count++;
     }
     
     public bool IsSkillEnable()

@@ -106,8 +106,6 @@ public class Item
         {
             
         }
-        
-        RefreshEvent.Trigger(Enum_RefreshEventType.Item);
 
         return true;
     }

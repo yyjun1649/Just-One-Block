@@ -15,7 +15,7 @@ public abstract class UI_EnhancedScroller<TCellView, TData> : MonoBehaviour, IEn
 
     public virtual void Initialize(TData[] dataList)
     {
-        if (dataList == null || dataList.Length <= 0)
+        if (dataList == null)
         {
             return;
         }
@@ -27,7 +27,7 @@ public abstract class UI_EnhancedScroller<TCellView, TData> : MonoBehaviour, IEn
     
     public virtual void Initialize(List<TData> dataList)
     {
-        if (dataList == null || dataList.Count <= 0)
+        if (dataList == null)
         {
             return;
         }
@@ -64,11 +64,11 @@ public abstract class UI_EnhancedScroller<TCellView, TData> : MonoBehaviour, IEn
 
     public int GetNumberOfCells(EnhancedScroller scroller)
     {
-        if (_dataArray != null && _dataArray.Length > 0)
+        if (_dataArray != null)
         {
             return _dataArray.Length;
         }
-        else if(_dataList != null && _dataList.Count > 0)
+        else if(_dataList != null)
         {
             return _dataList.Count;
         }
@@ -88,11 +88,11 @@ public abstract class UI_EnhancedScroller<TCellView, TData> : MonoBehaviour, IEn
     {
         TCellView cellView = scroller.GetCellView(_slotPrefab) as TCellView;
         
-        if (_dataArray != null && _dataArray.Length > 0)
+        if (_dataArray != null)
         {
             RefreshCellView(cellView, _dataArray[dataIndex]);
         }
-        else if (_dataList != null && _dataList.Count > 0)
+        else if (_dataList != null)
         {
             RefreshCellView(cellView, _dataList[dataIndex]);
         }

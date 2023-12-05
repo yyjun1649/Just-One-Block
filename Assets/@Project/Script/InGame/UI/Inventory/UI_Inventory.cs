@@ -18,6 +18,7 @@ public class UI_Inventory : UI_Base, GameEventListener<RefreshEvent>
         var items = InGameManager.Instance.InventorySystem.GetExistItem();
 
         _scroller.Initialize(items);
+        _scroller.Refresh();
     }
 
     public void OnGameEvent(RefreshEvent gameEventType)

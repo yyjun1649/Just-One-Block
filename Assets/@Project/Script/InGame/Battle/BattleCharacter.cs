@@ -10,6 +10,7 @@ public class BattleCharacter : SingletonBehaviour<BattleCharacter>
     public List<Monster> Target;
     public float currentHealth;
     public bool IsAlive;
+    
     public void Initialize()
     {
         CalculateStat();
@@ -44,6 +45,8 @@ public class BattleCharacter : SingletonBehaviour<BattleCharacter>
 
     public Monster GetCloseMonster()
     {
+        Target.RemoveAll(x=>!x.isAlive);
+     
         if (Target.Count == 0)
         {
             return null;
@@ -76,6 +79,7 @@ public class BattleCharacter : SingletonBehaviour<BattleCharacter>
         Damage damage = new Damage();
         
         damage.Value = Stat[Enum_StatType.Damage];
+        damage.Value = 1;
         
         if (UtilCode.GetChance(Stat[Enum_StatType.CriticalChance]))
         {

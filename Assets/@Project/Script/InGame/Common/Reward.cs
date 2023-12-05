@@ -2,6 +2,7 @@
 public enum Enum_RewardType
 {
     Currency,
+    Blood,
     Land,
 }
 

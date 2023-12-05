@@ -1,4 +1,4 @@
-﻿public class Weapon0 : Weapon
+﻿public class Weapon0 : ActiveWeapon
 {
-        
+    
 }

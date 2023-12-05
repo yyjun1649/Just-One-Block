@@ -99,5 +99,9 @@ public class Monster : MonoBehaviour
         currentHealth = 0; // 체력 초기화
         StopCoroutine(StateMachine());
         gameObject.SetActive(false);
+        
+        RewardManager.TryConsume(_reward);
     }
+
+    private Reward _reward = new Reward(Enum_RewardType.Blood, 0, 1);
 }

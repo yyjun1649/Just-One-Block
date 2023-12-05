@@ -27,6 +27,8 @@ public class CurrencySystem : PlaySystem
     public void AddCurrency(Enum_Currency currency, int amount)
     {
         _currency[(int)currency].Add(amount);
+        
+        CurrencyEvent.Trigger(Enum_Currency.Blood);
     }
 
     public bool IsEnough(Enum_Currency currencyType, int count)
@@ -43,6 +45,7 @@ public class CurrencySystem : PlaySystem
     {
         if (_currency[(int)currencyType].TryConsume(count))
         {
+            CurrencyEvent.Trigger(Enum_Currency.Blood);
             return true;
         }
 

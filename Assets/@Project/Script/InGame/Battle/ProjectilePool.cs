@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ProjectilePool : SingletonBehaviour<ProjectilePool>
 {
-    public BaseProjectile projectilePrefab;    
+    public Projectile0 projectilePrefab;    
     public int poolSize = 20;              
 
     private Queue<BaseProjectile> projectiles; 

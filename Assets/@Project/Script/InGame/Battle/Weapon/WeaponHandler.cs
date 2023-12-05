@@ -22,9 +22,12 @@ public class WeaponHandler : EquipmentHandler
         }
 
         _isInitialized = true;
-        
+
+        _player = BattleCharacter.Instance;
         _weaponList = new List<Weapon>(_trParent.childCount);
         _weaponList = _trParent.GetComponentsInChildren<Weapon>().ToList();
+        _activeWeaponList = _trParent.GetComponentsInChildren<ActiveWeapon>().ToList();
+        _passiveWeaponList = _trParent.GetComponentsInChildren<PassiveWeapon>().ToList();
     }
 
     public override void InitEquipment()
@@ -46,6 +49,8 @@ public class WeaponHandler : EquipmentHandler
     public override void OnUpdate(float dt)
     {
         RefreshCoolDown(dt);
+
+        TryUseAutoSkill();
     }
     
     protected override void RefreshCoolDown(float dt)
@@ -107,11 +112,13 @@ public class WeaponHandler : EquipmentHandler
         }
         
         _weaponList[weapon.fieldID].Initialize(weapon);
+        _weaponList[weapon.fieldID].EquipCheck();
+        _weaponList[weapon.fieldID].gameObject.SetActive(true);
         
         _equippedWeaponList.Add(_weaponList[weapon.fieldID]);
     }
     
-    public void TryUseAutoSkill(bool isEnemy = false)
+    public void TryUseAutoSkill()
     {
         if (_player.GetCloseMonster() == null)
         {

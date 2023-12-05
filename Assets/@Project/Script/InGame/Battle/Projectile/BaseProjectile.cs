@@ -31,12 +31,18 @@ public abstract class BaseProjectile : MonoBehaviour
     public virtual void Initialize(int fieldID)
     {
         //_spec = SpecDataManager.Instance.SpecProjectileData[fieldID];
-        _spec = new SpecProjectile(0,1,1,Enum_ProjectileType.Normal);
+        _spec = new SpecProjectile(0,10f,1,Enum_ProjectileType.Normal);
     }
 
     public virtual BaseProjectile SetDir(Vector3 direction)
     {
         _direction = direction;
+        return this;
+    }
+    
+    public virtual BaseProjectile SetDir2(float rotate)
+    {
+        _direction = Quaternion.Euler(0,0,rotate) * _direction;
         return this;
     }
 
@@ -66,7 +72,7 @@ public abstract class BaseProjectile : MonoBehaviour
     
     protected virtual void OnEnemyCollision(Monster target)
     {
-        if (target != null && !target.isAlive)
+        if (target != null && target.isAlive)
         {
             var damage = BattleCharacter.Instance.GetDamage();
             damage.Value *= (1 + _spec.damage);
@@ -128,8 +134,8 @@ public abstract class BaseProjectile : MonoBehaviour
         
         while (true)
         {
-            transform.Translate(_direction*_spec.speed);
-            yield break;
+            transform.Translate(_direction * (_spec.speed * Time.deltaTime));
+            yield return null;
         }
     }
     
@@ -139,6 +145,7 @@ public abstract class BaseProjectile : MonoBehaviour
 
     public virtual void Hide(bool force = false)
     {
+        StopAllCoroutines();
         gameObject.SetActive(false);
 
         StartPosition = null;
@@ -158,7 +165,7 @@ public abstract class BaseProjectile : MonoBehaviour
     
     protected virtual float GetHideDelay()
     {
-        return 0;
+        return 20f;
     }
 
     #endregion

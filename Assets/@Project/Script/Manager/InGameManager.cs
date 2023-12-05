@@ -132,6 +132,8 @@ public class InGameManager : SingletonBehaviour<InGameManager>
         
         EquipmentCraftingSystem.ShowOffUI();
         InventorySystem.ShowOffUI();
+
+        BattleCharacter.Instance.Initialize();
         SpawnManager.Instance.StartWave((Level+1) * 30);
         SetState<GameStateBattle>();
     }

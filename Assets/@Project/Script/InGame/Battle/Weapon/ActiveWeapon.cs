@@ -1,11 +1,12 @@
 ﻿
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ActiveWeapon : Weapon
 {
     protected Coroutine WeaponCoroutine;
-    
+
     public override bool TryAttack()
     {
         if (!IsSkillEnable() || InGameManager.Instance._currentState != Enum_State.Battle)
@@ -31,10 +32,27 @@ public class ActiveWeapon : Weapon
     
     protected virtual IEnumerator SkillDelayCoroutine()
     {
-        var targets = _player.GetCloseMonster();
+        var target = _player.GetCloseMonster();
 
-        Attack(targets);
-        OnAttack();
+        for (int i = 0; i < count; i++)
+        {
+            var projectile = ProjectilePool.Instance.GetProjectile();
+
+            int leftRight = i % 2 == 0 ? -1 : 1;
+            int value = (i+1) / 2;
+            float euler = leftRight * value * 15f;
+            
+            projectile
+                .SetPos(_player.transform.position)
+                .SetDir(GetPrjectileDirection(target))
+                .SetDir2(euler)
+                .SetAction(_player.ActionEvent.OnTargetHit.Action)
+                .Initialize(_specData.projectileID);
+            
+            Attack(target,projectile);
+            OnAttack();
+            yield return null;
+        }
 
         yield return new WaitForSeconds(0.3f);
     }
@@ -50,20 +68,12 @@ public class ActiveWeapon : Weapon
         return new WaitForSeconds(duration / speed);
     }
 
-    protected virtual void Attack(Monster target)
+    protected virtual void Attack(Monster target, BaseProjectile projectile)
     {
         if (target == null || !target.isAlive)
         {
             return;
         }
-
-        var projectile = ProjectilePool.Instance.GetProjectile();
-        
-        projectile
-            .SetPos(_player.transform.position)
-            .SetDir(GetPrjectileDirection(target))
-            .SetAction(_player.ActionEvent.OnTargetHit.Action)
-            .Initialize(_specData.projectileID);
         
         projectile.Shot();
     }
@@ -72,4 +82,7 @@ public class ActiveWeapon : Weapon
     {
         _player.ActionEvent.Attack.Action();
     }
+
+    private const float attackCountDelay = 0.1f;
+    private WaitForSeconds attckCountwfs = new WaitForSeconds(attackCountDelay);
 }
