@@ -9,13 +9,16 @@ public class Monster : MonoBehaviour
     public bool isAlive = false;
     
     private Enum_MonsterState currentState = Enum_MonsterState.Idle;
-
+    private Damage damage = new Damage();
     public void Init(int fieldID)
     {
-        Spec = SpecDataManager.Instance.SpecMonsterData[fieldID];
-
+        //Spec = SpecDataManager.Instance.SpecMonsterData[fieldID];
+        Spec = new SpecMonster(0,0,1,1,1,1,1);
+        damage.Value = 1;
+        SetTarget(BattleCharacter.Instance.transform);
         isAlive = true;
         currentHealth = Spec.health;
+        gameObject.SetActive(true);
         StartCoroutine(StateMachine());
     }
     
@@ -64,7 +67,8 @@ public class Monster : MonoBehaviour
     
     IEnumerator Attack()
     {
-        yield return null;
+        BattleCharacter.Instance.TakeDamage(damage);
+        yield return Spec.attackSpeed;
     }
 
     public void ChangeState(Enum_MonsterState newState)
@@ -94,5 +98,6 @@ public class Monster : MonoBehaviour
         MonsterPool.Instance.ReturnObject(this);
         currentHealth = 0; // 체력 초기화
         StopCoroutine(StateMachine());
+        gameObject.SetActive(false);
     }
 }

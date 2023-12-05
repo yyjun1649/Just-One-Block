@@ -7,8 +7,8 @@ public abstract class BaseProjectile : MonoBehaviour
 {
     private Rigidbody2D _rigidbody;
     public TrailRenderer Renderer;
-    public ParticleSystem ShotParticle;
-    public ParticleSystem HitParticle;
+    // public ParticleSystem ShotParticle;
+    // public ParticleSystem HitParticle;
     public GameObject ProjectileModel;
     public Collider2D ProjectileCollider;
 
@@ -30,7 +30,8 @@ public abstract class BaseProjectile : MonoBehaviour
     
     public virtual void Initialize(int fieldID)
     {
-        _spec = SpecDataManager.Instance.SpecProjectileData[fieldID];
+        //_spec = SpecDataManager.Instance.SpecProjectileData[fieldID];
+        _spec = new SpecProjectile(0,1,1,Enum_ProjectileType.Normal);
     }
 
     public virtual BaseProjectile SetDir(Vector3 direction)
@@ -77,7 +78,7 @@ public abstract class BaseProjectile : MonoBehaviour
     
     private IEnumerator HitEffect()
     {
-        HitParticle.gameObject.SetActive(true);
+        //HitParticle.gameObject.SetActive(true);
 
         _hitWaitForSeconds ??= new WaitForSeconds(hitVFXDelay);
         
@@ -120,8 +121,17 @@ public abstract class BaseProjectile : MonoBehaviour
     }
 
     #region Move
-    
-    protected abstract IEnumerator ProjectileMovement();
+
+    protected virtual IEnumerator ProjectileMovement()
+    {
+        transform.position = StartPositionOffset;
+        
+        while (true)
+        {
+            transform.Translate(_direction*_spec.speed);
+            yield break;
+        }
+    }
     
     #endregion
 

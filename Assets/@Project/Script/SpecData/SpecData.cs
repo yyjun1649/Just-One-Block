@@ -61,6 +61,7 @@ public partial class BGSpecLand : BGEntity
 	private static readonly BGSpecShopProb.Factory _factory3_PFS = new BGSpecShopProb.Factory();
 	private static readonly BGSpecLevel.Factory _factory4_PFS = new BGSpecLevel.Factory();
 	private static readonly BGSpecWeapon.Factory _factory5_PFS = new BGSpecWeapon.Factory();
+	private static readonly BGSpecMonster.Factory _factory6_PFS = new BGSpecMonster.Factory();
 	private BGSpecLand() : base(MetaDefault) {}
 	private BGSpecLand(BGId id) : base(MetaDefault, id) {}
 	private BGSpecLand(BGMetaEntity meta) : base(meta) {}
@@ -129,6 +130,7 @@ public partial class BGSpecItem : BGEntity
 	private static readonly BGSpecShopProb.Factory _factory3_PFS = new BGSpecShopProb.Factory();
 	private static readonly BGSpecLevel.Factory _factory4_PFS = new BGSpecLevel.Factory();
 	private static readonly BGSpecWeapon.Factory _factory5_PFS = new BGSpecWeapon.Factory();
+	private static readonly BGSpecMonster.Factory _factory6_PFS = new BGSpecMonster.Factory();
 	private BGSpecItem() : base(MetaDefault) {}
 	private BGSpecItem(BGId id) : base(MetaDefault, id) {}
 	private BGSpecItem(BGMetaEntity meta) : base(meta) {}
@@ -190,6 +192,7 @@ public partial class BGSpecItemCraft : BGEntity
 	private static readonly BGSpecShopProb.Factory _factory3_PFS = new BGSpecShopProb.Factory();
 	private static readonly BGSpecLevel.Factory _factory4_PFS = new BGSpecLevel.Factory();
 	private static readonly BGSpecWeapon.Factory _factory5_PFS = new BGSpecWeapon.Factory();
+	private static readonly BGSpecMonster.Factory _factory6_PFS = new BGSpecMonster.Factory();
 	private BGSpecItemCraft() : base(MetaDefault) {}
 	private BGSpecItemCraft(BGId id) : base(MetaDefault, id) {}
 	private BGSpecItemCraft(BGMetaEntity meta) : base(meta) {}
@@ -244,6 +247,7 @@ public partial class BGSpecShopProb : BGEntity
 	private static readonly BGSpecShopProb.Factory _factory3_PFS = new BGSpecShopProb.Factory();
 	private static readonly BGSpecLevel.Factory _factory4_PFS = new BGSpecLevel.Factory();
 	private static readonly BGSpecWeapon.Factory _factory5_PFS = new BGSpecWeapon.Factory();
+	private static readonly BGSpecMonster.Factory _factory6_PFS = new BGSpecMonster.Factory();
 	private BGSpecShopProb() : base(MetaDefault) {}
 	private BGSpecShopProb(BGId id) : base(MetaDefault, id) {}
 	private BGSpecShopProb(BGMetaEntity meta) : base(meta) {}
@@ -298,6 +302,7 @@ public partial class BGSpecLevel : BGEntity
 	private static readonly BGSpecShopProb.Factory _factory3_PFS = new BGSpecShopProb.Factory();
 	private static readonly BGSpecLevel.Factory _factory4_PFS = new BGSpecLevel.Factory();
 	private static readonly BGSpecWeapon.Factory _factory5_PFS = new BGSpecWeapon.Factory();
+	private static readonly BGSpecMonster.Factory _factory6_PFS = new BGSpecMonster.Factory();
 	private BGSpecLevel() : base(MetaDefault) {}
 	private BGSpecLevel(BGId id) : base(MetaDefault, id) {}
 	private BGSpecLevel(BGMetaEntity meta) : base(meta) {}
@@ -387,6 +392,7 @@ public partial class BGSpecWeapon : BGEntity
 	private static readonly BGSpecShopProb.Factory _factory3_PFS = new BGSpecShopProb.Factory();
 	private static readonly BGSpecLevel.Factory _factory4_PFS = new BGSpecLevel.Factory();
 	private static readonly BGSpecWeapon.Factory _factory5_PFS = new BGSpecWeapon.Factory();
+	private static readonly BGSpecMonster.Factory _factory6_PFS = new BGSpecMonster.Factory();
 	private BGSpecWeapon() : base(MetaDefault) {}
 	private BGSpecWeapon(BGId id) : base(MetaDefault, id) {}
 	private BGSpecWeapon(BGMetaEntity meta) : base(meta) {}
@@ -400,5 +406,81 @@ public partial class BGSpecWeapon : BGEntity
 	public static BGSpecWeapon NewEntity() => (BGSpecWeapon) MetaDefault.NewEntity();
 	public static BGSpecWeapon NewEntity(BGId entityId) => (BGSpecWeapon) MetaDefault.NewEntity(entityId);
 	public static BGSpecWeapon NewEntity(Action<BGSpecWeapon> callback) => (BGSpecWeapon) MetaDefault.NewEntity(new BGMetaEntity.NewEntityContext(entity => callback((BGSpecWeapon)entity)));
+}
+
+public partial class BGSpecMonster : BGEntity
+{
+
+	public class Factory : BGEntity.EntityFactory
+	{
+		public BGEntity NewEntity(BGMetaEntity meta) => new BGSpecMonster(meta);
+		public BGEntity NewEntity(BGMetaEntity meta, BGId id) => new BGSpecMonster(meta, id);
+	}
+	private static BansheeGz.BGDatabase.BGMetaRow _metaDefault;
+	public static BansheeGz.BGDatabase.BGMetaRow MetaDefault => _metaDefault ?? (_metaDefault = BGCodeGenUtils.GetMeta<BansheeGz.BGDatabase.BGMetaRow>(new BGId(4779500030397125365UL,12153529042744867748UL), () => _metaDefault = null));
+	public static BansheeGz.BGDatabase.BGRepoEvents Events => BGRepo.I.Events;
+	public static int CountEntities => MetaDefault.CountEntities;
+	public System.String name
+	{
+		get => _name[Index];
+		set => _name[Index] = value;
+	}
+	public System.Int32 hp
+	{
+		get => _hp[Index];
+		set => _hp[Index] = value;
+	}
+	public System.Int32 damage
+	{
+		get => _damage[Index];
+		set => _damage[Index] = value;
+	}
+	public System.Int32 attackRange
+	{
+		get => _attackRange[Index];
+		set => _attackRange[Index] = value;
+	}
+	public System.Int32 attckSpeed
+	{
+		get => _attckSpeed[Index];
+		set => _attckSpeed[Index] = value;
+	}
+	public System.Int32 moveSpeed
+	{
+		get => _moveSpeed[Index];
+		set => _moveSpeed[Index] = value;
+	}
+	private static BansheeGz.BGDatabase.BGFieldEntityName _ufle12jhs77_name;
+	public static BansheeGz.BGDatabase.BGFieldEntityName _name => _ufle12jhs77_name ?? (_ufle12jhs77_name = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldEntityName>(MetaDefault, new BGId(5602826833488913901UL, 6764414732454339259UL), () => _ufle12jhs77_name = null));
+	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_hp;
+	public static BansheeGz.BGDatabase.BGFieldInt _hp => _ufle12jhs77_hp ?? (_ufle12jhs77_hp = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(5759306090293947628UL, 2641895757018247558UL), () => _ufle12jhs77_hp = null));
+	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_damage;
+	public static BansheeGz.BGDatabase.BGFieldInt _damage => _ufle12jhs77_damage ?? (_ufle12jhs77_damage = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(4950086383706732087UL, 5979070938635539364UL), () => _ufle12jhs77_damage = null));
+	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_attackRange;
+	public static BansheeGz.BGDatabase.BGFieldInt _attackRange => _ufle12jhs77_attackRange ?? (_ufle12jhs77_attackRange = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(4919183999065727359UL, 4225249527859625864UL), () => _ufle12jhs77_attackRange = null));
+	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_attckSpeed;
+	public static BansheeGz.BGDatabase.BGFieldInt _attckSpeed => _ufle12jhs77_attckSpeed ?? (_ufle12jhs77_attckSpeed = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(5235069393614177836UL, 4594509202206523071UL), () => _ufle12jhs77_attckSpeed = null));
+	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_moveSpeed;
+	public static BansheeGz.BGDatabase.BGFieldInt _moveSpeed => _ufle12jhs77_moveSpeed ?? (_ufle12jhs77_moveSpeed = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(5435298080202283541UL, 1209821219464702608UL), () => _ufle12jhs77_moveSpeed = null));
+	private static readonly BGSpecLand.Factory _factory0_PFS = new BGSpecLand.Factory();
+	private static readonly BGSpecItem.Factory _factory1_PFS = new BGSpecItem.Factory();
+	private static readonly BGSpecItemCraft.Factory _factory2_PFS = new BGSpecItemCraft.Factory();
+	private static readonly BGSpecShopProb.Factory _factory3_PFS = new BGSpecShopProb.Factory();
+	private static readonly BGSpecLevel.Factory _factory4_PFS = new BGSpecLevel.Factory();
+	private static readonly BGSpecWeapon.Factory _factory5_PFS = new BGSpecWeapon.Factory();
+	private static readonly BGSpecMonster.Factory _factory6_PFS = new BGSpecMonster.Factory();
+	private BGSpecMonster() : base(MetaDefault) {}
+	private BGSpecMonster(BGId id) : base(MetaDefault, id) {}
+	private BGSpecMonster(BGMetaEntity meta) : base(meta) {}
+	private BGSpecMonster(BGMetaEntity meta, BGId id) : base(meta, id) {}
+	public static BGSpecMonster FindEntity(Predicate<BGSpecMonster> filter) => BGCodeGenUtils.FindEntity(MetaDefault, filter);
+	public static List<BGSpecMonster> FindEntities(Predicate<BGSpecMonster> filter, List<BGSpecMonster> result=null, Comparison<BGSpecMonster> sort=null) => BGCodeGenUtils.FindEntities(MetaDefault, filter, result, sort);
+	public static void ForEachEntity(Action<BGSpecMonster> action, Predicate<BGSpecMonster> filter=null, Comparison<BGSpecMonster> sort=null) => BGCodeGenUtils.ForEachEntity(MetaDefault, action, filter, sort);
+	public static BGSpecMonster GetEntity(BGId entityId) => (BGSpecMonster) MetaDefault.GetEntity(entityId);
+	public static BGSpecMonster GetEntity(int index) => (BGSpecMonster) MetaDefault[index];
+	public static BGSpecMonster GetEntity(string entityName) => (BGSpecMonster) MetaDefault.GetEntity(entityName);
+	public static BGSpecMonster NewEntity() => (BGSpecMonster) MetaDefault.NewEntity();
+	public static BGSpecMonster NewEntity(BGId entityId) => (BGSpecMonster) MetaDefault.NewEntity(entityId);
+	public static BGSpecMonster NewEntity(Action<BGSpecMonster> callback) => (BGSpecMonster) MetaDefault.NewEntity(new BGMetaEntity.NewEntityContext(entity => callback((BGSpecMonster)entity)));
 }
 #pragma warning restore 414

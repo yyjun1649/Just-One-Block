@@ -33,17 +33,10 @@ public class ActiveWeapon : Weapon
     {
         var targets = _player.GetCloseMonster();
 
-        SetPrjectilePosition();
-
         Attack(targets);
         OnAttack();
 
         yield return new WaitForSeconds(0.3f);
-    }
-
-    protected virtual void SetPrjectilePosition()
-    {
-        transform.position = _player.transform.position;
     }
     
     protected virtual Vector3 GetPrjectileDirection(Monster target)

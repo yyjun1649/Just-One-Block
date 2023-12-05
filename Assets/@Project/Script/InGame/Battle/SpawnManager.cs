@@ -8,6 +8,23 @@ public class SpawnManager : SingletonBehaviour<SpawnManager>
     public float radius = 5f;
     public Vector2 center = new Vector2(0, 0);
     private Vector2 randomPoint = new Vector2();
+
+    private WaitForSeconds wfs = new WaitForSeconds(1f);
+
+    public void StartWave(int count)
+    {
+        StartCoroutine(CoSpawn(count));
+    }
+
+    public IEnumerator CoSpawn(int count)
+    {
+        while (count > 0)
+        {
+            SpawnMonster();
+            count--;
+            yield return wfs;
+        }
+    }
     
     void GetRandomPointOnCircle(ref Vector2 point, Vector2 center, float radius)
     {
@@ -22,22 +39,23 @@ public class SpawnManager : SingletonBehaviour<SpawnManager>
         
         Monster monster = MonsterPool.Instance.GetObject();
         monster.transform.position = randomPoint;
+        monster.Init(0);
         
-        List<SpecMonster> monsters = ListPool<SpecMonster>.Get();
-
-        var level = InGameManager.Instance.Level;
-        foreach (var ms in SpecDataManager.Instance.SpecMonsterData)
-        {
-            if (level == monster.Spec.level)
-            {
-                monsters.Add(ms);
-            }
-        }
-        
-        var randomIndex = Random.Range(0, monsters.Count);
-        
-        monster.Init(monsters[randomIndex].fieldID);
-        
-        ListPool<SpecMonster>.Release(monsters);
+        // List<SpecMonster> monsters = ListPool<SpecMonster>.Get();
+        //
+        // var level = InGameManager.Instance.Level;
+        // foreach (var ms in SpecDataManager.Instance.SpecMonsterData)
+        // {
+        //     if (level == monster.Spec.level)
+        //     {
+        //         monsters.Add(ms);
+        //     }
+        // }
+        //
+        // var randomIndex = Random.Range(0, monsters.Count);
+        //
+        // monster.Init(monsters[randomIndex].fieldID);
+        //
+        // ListPool<SpecMonster>.Release(monsters);
     }
 }

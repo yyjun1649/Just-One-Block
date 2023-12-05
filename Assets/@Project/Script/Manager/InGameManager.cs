@@ -132,7 +132,7 @@ public class InGameManager : SingletonBehaviour<InGameManager>
         
         EquipmentCraftingSystem.ShowOffUI();
         InventorySystem.ShowOffUI();
-        
+        SpawnManager.Instance.StartWave((Level+1) * 30);
         SetState<GameStateBattle>();
     }
 
